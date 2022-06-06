@@ -95,7 +95,12 @@
 
 
 <div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/api_reference.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.</span>
+<span class="sd">    </span>
+<span class="sd">    :param aggregator: A callable which takes a list of tensors and returns</span>
+<span class="sd">                an aggregated tensor.</span>
+<span class="sd">    :param name: name of human.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">dataset</span><span class="p">:</span> <span class="n">FLDataset</span><span class="p">,</span>
@@ -110,17 +115,6 @@
             <span class="n">use_cuda</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Make a virtual human. Args:</span>
-<span class="sd">            aggregator (callable):</span>
-<span class="sd">            log_interval (int): Control the frequency of logging training batches</span>
-<span class="sd">            metrics (dict): dict of metric names and their functions</span>
-<span class="sd">            use_cuda (bool): Use cuda or not</span>
-<span class="sd">            debug (bool):</span>
-
-<span class="sd">        :param aggregator: A callable which takes a list of tensors and returns</span>
-<span class="sd">                an aggregated tensor.</span>
-<span class="sd">        :param name: name of human.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">importlib</span>
         <span class="n">agg_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.aggregators.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">aggregator</span><span class="p">)</span>
         <span class="n">agg_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">agg_path</span><span class="p">,</span> <span class="n">aggregator</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
@@ -324,7 +318,7 @@
             <span class="n">lr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
             <span class="n">lr_scheduler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;speak some words.</span>
+        <span class="sd">&quot;&quot;&quot;Run the adversarial training.</span>
 <span class="sd">    </span>
 <span class="sd">        :param model: The global model for training.</span>
 <span class="sd">        :type model: `torch.nn.Module`</span>
@@ -332,12 +326,18 @@
 <span class="sd">        :type server_optimizer: torch.optim.Optimizer or str</span>
 <span class="sd">        :param client_optimizer: Pytorch optimizer for client-side optimization. Currently, the ``str`` type only supports `SGD`</span>
 <span class="sd">        :type client_optimizer: torch.optim.Optimizer or str</span>
-<span class="sd">        :param loss: A Pytorch Loss function. See https://pytorch.org/docs/stable/nn.html#loss-functions. Currently, the `str` type only supports `SGD`</span>
+<span class="sd">        :param loss: A Pytorch Loss function. See https://pytorch.org/docs/stable/nn.html#loss-functions. Currently, the `str` type only supports ``crossentropy``</span>
 <span class="sd">        :type loss: str</span>
 <span class="sd">        :param global_rounds: Number of communication rounds in total.</span>
 <span class="sd">        :type global_rounds: int, optional</span>
 <span class="sd">        :param local_steps: Number of local steps of each global round.</span>
 <span class="sd">        :type local_steps: int, optional</span>
+<span class="sd">        :param validate_interval: Interval of evaluating the global model using test set.</span>
+<span class="sd">        :type validate_interval: int, optional</span>
+<span class="sd">        :param test_batch_size: Batch size of evaluation</span>
+<span class="sd">        :type test_batch_size: int, optional</span>
+<span class="sd">        :param lr: Learning rate of ``client_optimizer``</span>
+<span class="sd">        :type lr: float, optional</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">server_optimizer</span> <span class="o">==</span> <span class="s1">&#39;SGD&#39;</span><span class="p">:</span>
