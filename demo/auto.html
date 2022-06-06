@@ -1,0 +1,547 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="See an example how module documentation looks like with this theme. Sphinx generates module documentation from docstrings in the source code." name="description" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/>
+        <title>Module documentation - Blades documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Blades  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Blades  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../attacks.html">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defenses.html">Defenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">API Reference</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-documentation">
+<h1>Module documentation<a class="headerlink" href="#module-documentation" title="Permalink to this headline">#</a></h1>
+<p class="lead">See, how automatically generated documentation from Python source code
+looks like with the <a href="#id1"><span class="problematic" id="id2">|product|</span></a>.</p>
+<section id="automodule-example">
+<h2>Automodule example<a class="headerlink" href="#automodule-example" title="Permalink to this headline">#</a></h2>
+<span class="target" id="module-docutils"></span><p>This is the Docutils (Python Documentation Utilities) package.</p>
+<section id="package-structure">
+<h3>Package Structure<a class="headerlink" href="#package-structure" title="Permalink to this headline">#</a></h3>
+<p>Modules:</p>
+<ul class="simple">
+<li><p>__init__.py: Contains component base classes, exception classes, and
+Docutils version information.</p></li>
+<li><p>core.py: Contains the <code class="docutils literal notranslate"><span class="pre">Publisher</span></code> class and <code class="docutils literal notranslate"><span class="pre">publish_*()</span></code> convenience
+functions.</p></li>
+<li><p>frontend.py: Runtime settings (command-line interface, configuration files)
+processing, for Docutils front-ends.</p></li>
+<li><p>io.py: Provides a uniform API for low-level input and output.</p></li>
+<li><p>nodes.py: Docutils document tree (doctree) node class library.</p></li>
+<li><p>statemachine.py: A finite state machine specialized for
+regular-expression-based text filters.</p></li>
+</ul>
+<p>Subpackages:</p>
+<ul>
+<li><p>languages: Language-specific mappings of terms.</p></li>
+<li><p>parsers: Syntax-specific input parser modules or packages.</p></li>
+<li><p>readers: Context-specific input handlers which understand the data
+source and manage a parser.</p></li>
+<li><p>transforms: Modules used by readers and writers to modify DPS
+doctrees.</p></li>
+<li><p>utils: Contains the <code class="docutils literal notranslate"><span class="pre">Reporter</span></code> system warning class and miscellaneous
+utilities used by readers, writers, and transforms.</p>
+<p>utils/urischemes.py: Contains a complete mapping of known URI addressing
+scheme names to descriptions.</p>
+</li>
+<li><p>utils/math: Contains functions for conversion of mathematical notation
+between different formats (LaTeX, MathML, text, …).</p></li>
+<li><p>writers: Format-specific output translators.</p></li>
+</ul>
+<dl class="py exception">
+<dt class="sig sig-object py" id="docutils.ApplicationError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">ApplicationError</span></span><a class="reference internal" href="../_modules/docutils.html#ApplicationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.ApplicationError" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="docutils.Component">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">Component</span></span><a class="reference internal" href="../_modules/docutils.html#Component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.Component" title="Permalink to this definition">#</a></dt>
+<dd><p>Base class for Docutils components.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.Component.component_type">
+<span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#docutils.Component.component_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Name of the component type (‘reader’, ‘parser’, ‘writer’).  Override in
+subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.Component.supported">
+<span class="sig-name descname"><span class="pre">supported</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#docutils.Component.supported" title="Permalink to this definition">#</a></dt>
+<dd><p>Names for this component.  Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="docutils.Component.supports">
+<span class="sig-name descname"><span class="pre">supports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils.html#Component.supports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.Component.supports" title="Permalink to this definition">#</a></dt>
+<dd><p>Is <cite>format</cite> supported by this component?</p>
+<p>To be used by transforms to ask the dependent component if it supports
+a certain input context or output format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="docutils.DataError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">DataError</span></span><a class="reference internal" href="../_modules/docutils.html#DataError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.DataError" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="docutils.SettingsSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">SettingsSpec</span></span><a class="reference internal" href="../_modules/docutils.html#SettingsSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.SettingsSpec" title="Permalink to this definition">#</a></dt>
+<dd><p>Runtime setting specification base class.</p>
+<p>SettingsSpec subclass objects used by <cite>docutils.frontend.OptionParser</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.config_section">
+<span class="sig-name descname"><span class="pre">config_section</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#docutils.SettingsSpec.config_section" title="Permalink to this definition">#</a></dt>
+<dd><p>The name of the config file section specific to this component
+(lowercase, no brackets).  Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.config_section_dependencies">
+<span class="sig-name descname"><span class="pre">config_section_dependencies</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#docutils.SettingsSpec.config_section_dependencies" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of names of config file sections that are to be applied before
+<cite>config_section</cite>, in order (from general to specific).  In other words,
+the settings in <cite>config_section</cite> are to be overlaid on top of the settings
+from these sections.  The “general” section is assumed implicitly.
+Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.relative_path_settings">
+<span class="sig-name descname"><span class="pre">relative_path_settings</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#docutils.SettingsSpec.relative_path_settings" title="Permalink to this definition">#</a></dt>
+<dd><p>Settings containing filesystem paths.  Override in subclasses.
+Settings listed here are to be interpreted relative to the current working
+directory.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.settings_default_overrides">
+<span class="sig-name descname"><span class="pre">settings_default_overrides</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#docutils.SettingsSpec.settings_default_overrides" title="Permalink to this definition">#</a></dt>
+<dd><p>A dictionary of auxiliary defaults, to override defaults for settings
+defined in other components.  Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.settings_defaults">
+<span class="sig-name descname"><span class="pre">settings_defaults</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#docutils.SettingsSpec.settings_defaults" title="Permalink to this definition">#</a></dt>
+<dd><p>A dictionary of defaults for settings not in <cite>settings_spec</cite> (internal
+settings, intended to be inaccessible by command-line and config file).
+Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.SettingsSpec.settings_spec">
+<span class="sig-name descname"><span class="pre">settings_spec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#docutils.SettingsSpec.settings_spec" title="Permalink to this definition">#</a></dt>
+<dd><p>Runtime settings specification.  Override in subclasses.</p>
+<p>Defines runtime settings and associated command-line options, as used by
+<cite>docutils.frontend.OptionParser</cite>.  This is a tuple of:</p>
+<ul>
+<li><p>Option group title (string or <cite>None</cite> which implies no group, just a list
+of single options).</p></li>
+<li><p>Description (string or <cite>None</cite>).</p></li>
+<li><p>A sequence of option tuples.  Each consists of:</p>
+<ul>
+<li><p>Help text (string)</p></li>
+<li><p>List of option strings (e.g. <code class="docutils literal notranslate"><span class="pre">['-Q',</span> <span class="pre">'--quux']</span></code>).</p></li>
+<li><p>Dictionary of keyword arguments sent to the OptionParser/OptionGroup
+<code class="docutils literal notranslate"><span class="pre">add_option</span></code> method.</p>
+<p>Runtime setting names are derived implicitly from long option names
+(’–a-setting’ becomes <code class="docutils literal notranslate"><span class="pre">settings.a_setting</span></code>) or explicitly from the
+‘dest’ keyword argument.</p>
+<p>Most settings will also have a ‘validator’ keyword &amp; function.  The
+validator function validates setting values (from configuration files
+and command-line option arguments) and converts them to appropriate
+types.  For example, the <code class="docutils literal notranslate"><span class="pre">docutils.frontend.validate_boolean</span></code>
+function, <strong>required by all boolean settings</strong>, converts true values
+(‘1’, ‘on’, ‘yes’, and ‘true’) to 1 and false values (‘0’, ‘off’,
+‘no’, ‘false’, and ‘’) to 0.  Validators need only be set once per
+setting.  See the <cite>docutils.frontend.validate_*</cite> functions.</p>
+<p>See the optparse docs for more details.</p>
+</li>
+</ul>
+</li>
+<li><p>More triples of group title, description, options, as many times as
+needed.  Thus, <cite>settings_spec</cite> tuples can be simply concatenated.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="docutils.TransformSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">TransformSpec</span></span><a class="reference internal" href="../_modules/docutils.html#TransformSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.TransformSpec" title="Permalink to this definition">#</a></dt>
+<dd><p>Runtime transform specification base class.</p>
+<p>TransformSpec subclass objects used by <cite>docutils.transforms.Transformer</cite>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="docutils.TransformSpec.get_transforms">
+<span class="sig-name descname"><span class="pre">get_transforms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils.html#TransformSpec.get_transforms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.TransformSpec.get_transforms" title="Permalink to this definition">#</a></dt>
+<dd><p>Transforms required by this class.  Override in subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="docutils.TransformSpec.unknown_reference_resolvers">
+<span class="sig-name descname"><span class="pre">unknown_reference_resolvers</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#docutils.TransformSpec.unknown_reference_resolvers" title="Permalink to this definition">#</a></dt>
+<dd><p>List of functions to try to resolve unknown references.  Unknown
+references have a ‘refname’ attribute which doesn’t correspond to any
+target in the document.  Called when the transforms in
+<cite>docutils.tranforms.references</cite> are unable to find a correct target.  The
+list should contain functions which will try to resolve unknown
+references, with the following signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reference_resolver</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns boolean: true if resolved, false if not.&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>If the function is able to resolve the reference, it should also remove
+the ‘refname’ attribute and mark the node as resolved:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refname&#39;</span><span class="p">]</span>
+<span class="n">node</span><span class="o">.</span><span class="n">resolved</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Each function must have a “priority” attribute which will affect the order
+the unknown_reference_resolvers are run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reference_resolver</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Override in subclasses.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="docutils.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">releaselevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'final'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils.html#VersionInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.VersionInfo" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="autoclass-example">
+<h2>Autoclass example<a class="headerlink" href="#autoclass-example" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="docutils.nodes.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">docutils.nodes.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><a class="reference internal" href="../_modules/docutils/nodes.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.nodes.Node" title="Permalink to this definition">#</a></dt>
+<dd><p>Abstract base class of nodes in a document tree.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="docutils.nodes.Node.walk">
+<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visitor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils/nodes.html#Node.walk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.nodes.Node.walk" title="Permalink to this definition">#</a></dt>
+<dd><p>Traverse a tree of <cite>Node</cite> objects, calling the
+<cite>dispatch_visit()</cite> method of <cite>visitor</cite> when entering each
+node.  (The <cite>walkabout()</cite> method is similar, except it also
+calls the <cite>dispatch_departure()</cite> method before exiting each
+node.)</p>
+<p>This tree traversal supports limited in-place tree
+modifications.  Replacing one node with one or more nodes is
+OK, as is removing an element.  However, if the node removed
+or replaced occurs after the current node, the old node will
+still be traversed, and any new nodes will not.</p>
+<p>Within <code class="docutils literal notranslate"><span class="pre">visit</span></code> methods (and <code class="docutils literal notranslate"><span class="pre">depart</span></code> methods for
+<cite>walkabout()</cite>), <cite>TreePruningException</cite> subclasses may be raised
+(<cite>SkipChildren</cite>, <cite>SkipSiblings</cite>, <cite>SkipNode</cite>, <cite>SkipDeparture</cite>).</p>
+<p>Parameter <cite>visitor</cite>: A <cite>NodeVisitor</cite> object, containing a
+<code class="docutils literal notranslate"><span class="pre">visit</span></code> implementation for each <cite>Node</cite> subclass encountered.</p>
+<p>Return true if we should stop the traversal.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="autofunction-example">
+<h2>Autofunction example<a class="headerlink" href="#autofunction-example" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="docutils.nodes.serial_escape">
+<span class="sig-prename descclassname"><span class="pre">docutils.nodes.</span></span><span class="sig-name descname"><span class="pre">serial_escape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils/nodes.html#serial_escape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#docutils.nodes.serial_escape" title="Permalink to this definition">#</a></dt>
+<dd><p>Escape string values that are elements of a list, for serialization.</p>
+</dd></dl>
+
+</section>
+<section id="command-line-options">
+<h2>Command line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">#</a></h2>
+<p>If you want to document command-line options, you have two choices.
+Sphinx comes with the <code class="docutils literal notranslate"><span class="pre">option</span></code> directive. This renders every option
+into its own element, including permalinks:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-h">
+<span id="cmdoption-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-h" title="Permalink to this definition">#</a></dt>
+<dd><p>Display a (hopefully) useful message.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-i">
+<span id="cmdoption-input"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"> <span class="pre">FILE</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--input</span></span><span class="sig-prename descclassname"> <span class="pre">FILE</span></span><a class="headerlink" href="#cmdoption-i" title="Permalink to this definition">#</a></dt>
+<dd><p>Specify an input file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-v">
+<span id="cmdoption-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-v" title="Permalink to this definition">#</a></dt>
+<dd><p>Increase the verbosity.</p>
+</dd></dl>
+
+</section>
+<section id="option-lists">
+<h2>Option lists<a class="headerlink" href="#option-lists" title="Permalink to this headline">#</a></h2>
+<p>A more compact way is built into the <code class="docutils literal notranslate"><span class="pre">docutils</span></code> module and works in Sphinx too:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Display a helpful message.</p>
+</dd>
+<dt><kbd><span class="option">-i <var>FILE</var></span>, <span class="option">--input <var>FILE</var></span></kbd></dt>
+<dd><p>Specify an input file.</p>
+</dd>
+<dt><kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></dt>
+<dd><p>Increase the verbosity.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Blades Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Module documentation</a><ul>
+<li><a class="reference internal" href="#automodule-example">Automodule example</a><ul>
+<li><a class="reference internal" href="#package-structure">Package Structure</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#autoclass-example">Autoclass example</a></li>
+<li><a class="reference internal" href="#autofunction-example">Autofunction example</a></li>
+<li><a class="reference internal" href="#command-line-options">Command line options</a></li>
+<li><a class="reference internal" href="#option-lists">Option lists</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    </body>
+</html>
