@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 
 <html>
@@ -7,14 +9,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>simulator &#8212; Blades  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
+    <div class="relbar-top">
+        
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -23,12 +47,15 @@
              accesskey="I">index</a></li>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Blades  documentation</a> &#187;</li>
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Blades  documentation</a> &#187;</li>
+
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">simulator</a></li> 
       </ul>
-    </div>  
+    </div>
+    </div>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -54,11 +81,14 @@
 <span class="kn">from</span> <span class="nn">blades.utils</span> <span class="kn">import</span> <span class="n">top1_accuracy</span><span class="p">,</span> <span class="n">initialize_logger</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
 <span class="c1"># from aggregators.mean import Mean</span>
 
 <span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
 <span class="k">class</span> <span class="nc">RayActor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ray Actor&quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="fm">__int__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">       Args:</span>
@@ -100,7 +130,13 @@
 <span class="sd">    :param aggregator: A callable which takes a list of tensors and returns</span>
 <span class="sd">                an aggregated tensor.</span>
 <span class="sd">    :param name: name of human.</span>
+<span class="sd">    :param attack: ``None`` by default. One of the build-in attacks, i.e., ``None``, ``noise``, ``labelflipping``, ``signflipping``, ``alie``,</span>
+<span class="sd">                    ``ipm``. It should be ``None`` if you have custom attack strategy.</span>
+<span class="sd">    :type attack: str</span>
+<span class="sd">    :param num_byzantine: Number of Byzantine clients under build-in attack. It should be ``0`` if you have custom attack strategy.</span>
+<span class="sd">    :type num_byzantine: int, optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">dataset</span><span class="p">:</span> <span class="n">FLDataset</span><span class="p">,</span>
@@ -126,7 +162,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span> <span class="o">=</span> <span class="n">log_path</span>
         <span class="n">initialize_logger</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_actor</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;actor&#39;</span> <span class="k">else</span> <span class="kc">False</span>
-
+        
         <span class="c1"># self.server_opt = torch.optim.SGD(model.parameters(), lr=lr)</span>
         <span class="c1"># self.server = TorchServer(self.server_opt, model=model)</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">!=</span> <span class="n">FLDataset</span><span class="p">:</span>
@@ -163,25 +199,20 @@
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">importlib</span>
-        <span class="c1"># abs_path = Path(__file__).absolute().parent.parent</span>
-        <span class="n">module_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.attackers.</span><span class="si">%s</span><span class="s1">client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="p">)</span>
-        <span class="n">attack_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">attack</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_byzantine</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">users</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_clients</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">users</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_byzantine</span><span class="p">:</span>
-                <span class="c1"># client = alieclient.AlieClient(20, 5, client_id=u, metrics=self.metrics, device=self.device)</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                
-                <span class="c1"># client.configure(self)</span>
+                <span class="n">module_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.attackers.</span><span class="si">%s</span><span class="s1">client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="p">)</span>
+                <span class="n">attack_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
-                <span class="c1"># client = attack_scheme(20, 5, client_id=u, metrics=self.metrics, device=self.device)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">TorchClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">TorchClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-  
-        
+    
     <span class="k">def</span> <span class="nf">cache_random_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># This function should be used for reproducibility</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">:</span>
@@ -322,9 +353,9 @@
 <span class="sd">    </span>
 <span class="sd">        :param model: The global model for training.</span>
 <span class="sd">        :type model: `torch.nn.Module`</span>
-<span class="sd">        :param server_optimizer: Pytorch optimizer for server-side optimization. Currently, the `str` type only supports `SGD`</span>
+<span class="sd">        :param server_optimizer: Pytorch optimizer for server-side optimization. Currently, the `str` type only supports ``SGD``</span>
 <span class="sd">        :type server_optimizer: torch.optim.Optimizer or str</span>
-<span class="sd">        :param client_optimizer: Pytorch optimizer for client-side optimization. Currently, the ``str`` type only supports `SGD`</span>
+<span class="sd">        :param client_optimizer: Pytorch optimizer for client-side optimization. Currently, the ``str`` type only supports ``SGD``</span>
 <span class="sd">        :type client_optimizer: torch.optim.Optimizer or str</span>
 <span class="sd">        :param loss: A Pytorch Loss function. See https://pytorch.org/docs/stable/nn.html#loss-functions. Currently, the `str` type only supports ``crossentropy``</span>
 <span class="sd">        :type loss: str</span>
@@ -448,8 +479,27 @@
 <script>$('#searchbox').show(0);</script>
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
+    <div class="relbar-bottom">
+        
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -458,15 +508,19 @@
              >index</a></li>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Blades  documentation</a> &#187;</li>
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Blades  documentation</a> &#187;</li>
+
           <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">simulator</a></li> 
       </ul>
     </div>
+    </div>
+
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, Blades Team.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
     </div>
+    <!-- cloud_sptheme 1.4 -->
   </body>
 </html>

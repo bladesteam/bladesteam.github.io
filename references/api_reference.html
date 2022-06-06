@@ -74,6 +74,9 @@
 <li><p><strong>aggregator</strong> – A callable which takes a list of tensors and returns
 an aggregated tensor.</p></li>
 <li><p><strong>name</strong> – name of human.</p></li>
+<li><p><strong>attack</strong> (<em>str</em>) – <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. One of the build-in attacks, i.e., <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">noise</span></code>, <code class="docutils literal notranslate"><span class="pre">labelflipping</span></code>, <code class="docutils literal notranslate"><span class="pre">signflipping</span></code>, <code class="docutils literal notranslate"><span class="pre">alie</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ipm</span></code>. It should be <code class="docutils literal notranslate"><span class="pre">None</span></code> if you have custom attack strategy.</p></li>
+<li><p><strong>num_byzantine</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of Byzantine clients under build-in attack. It should be <code class="docutils literal notranslate"><span class="pre">0</span></code> if you have custom attack strategy.</p></li>
 </ul>
 </dd>
 </dl>
@@ -85,8 +88,8 @@ an aggregated tensor.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – The global model for training.</p></li>
-<li><p><strong>server_optimizer</strong> (<em>torch.optim.Optimizer</em><em> or </em><em>str</em>) – Pytorch optimizer for server-side optimization. Currently, the <cite>str</cite> type only supports <cite>SGD</cite></p></li>
-<li><p><strong>client_optimizer</strong> (<em>torch.optim.Optimizer</em><em> or </em><em>str</em>) – Pytorch optimizer for client-side optimization. Currently, the <code class="docutils literal notranslate"><span class="pre">str</span></code> type only supports <cite>SGD</cite></p></li>
+<li><p><strong>server_optimizer</strong> (<em>torch.optim.Optimizer</em><em> or </em><em>str</em>) – Pytorch optimizer for server-side optimization. Currently, the <cite>str</cite> type only supports <code class="docutils literal notranslate"><span class="pre">SGD</span></code></p></li>
+<li><p><strong>client_optimizer</strong> (<em>torch.optim.Optimizer</em><em> or </em><em>str</em>) – Pytorch optimizer for client-side optimization. Currently, the <code class="docutils literal notranslate"><span class="pre">str</span></code> type only supports <code class="docutils literal notranslate"><span class="pre">SGD</span></code></p></li>
 <li><p><strong>loss</strong> (<em>str</em>) – A Pytorch Loss function. See <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">https://pytorch.org/docs/stable/nn.html#loss-functions</a>. Currently, the <cite>str</cite> type only supports <code class="docutils literal notranslate"><span class="pre">crossentropy</span></code></p></li>
 <li><p><strong>global_rounds</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of communication rounds in total.</p></li>
 <li><p><strong>local_steps</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of local steps of each global round.</p></li>
