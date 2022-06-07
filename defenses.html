@@ -250,6 +250,36 @@
 </section>
 <section id="customize-defense">
 <h2>Customize Defense<a class="headerlink" href="#customize-defense" title="Permalink to this headline"></a></h2>
+<p id="sec-customaggregator">The following example shows how to customize aggregation scheme.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">CIFAR10</span>
+<span class="kn">from</span> <span class="nn">blades.models.cifar10</span> <span class="kn">import</span> <span class="n">CCTNet</span>
+<span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
+
+<span class="n">cifar10</span> <span class="o">=</span> <span class="n">CIFAR10</span><span class="p">(</span><span class="n">num_clients</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># built-in federated cifar10 dataset</span>
+
+
+<span class="k">class</span> <span class="nc">Median</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">stacked</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">values_upper</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stacked</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">values_lower</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">stacked</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">values_upper</span> <span class="o">-</span> <span class="n">values_lower</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    
+
+<span class="c1"># configuration parameters</span>
+<span class="n">conf_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
+    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="n">Median</span><span class="p">(),</span>  <span class="c1"># defense: robust aggregation</span>
+    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
+<span class="p">}</span>
+
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="o">**</span><span class="n">conf_params</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 

@@ -260,7 +260,7 @@
 <div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.</span>
 <span class="sd">    </span>
-<span class="sd">    :param aggregator: A callable which takes a list of tensors and returns</span>
+<span class="sd">    :param aggregator: String (name of build-in aggregation scheme) or a callable which takes a list of tensors and returns</span>
 <span class="sd">                an aggregated tensor.</span>
 <span class="sd">    :param name: name of human.</span>
 <span class="sd">    :param attack: ``None`` by default. One of the build-in attacks, i.e., ``None``, ``noise``, ``labelflipping``, ``signflipping``, ``alie``,</span>
@@ -284,10 +284,13 @@
             <span class="n">use_cuda</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">importlib</span>
-        <span class="n">agg_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.aggregators.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">aggregator</span><span class="p">)</span>
-        <span class="n">agg_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">agg_path</span><span class="p">,</span> <span class="n">aggregator</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">agg_scheme</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">aggregator</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">importlib</span>
+            <span class="n">agg_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.aggregators.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">aggregator</span><span class="p">)</span>
+            <span class="n">agg_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">agg_path</span><span class="p">,</span> <span class="n">aggregator</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">agg_scheme</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">aggregator</span>
         <span class="n">num_trainers</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;num_trainers&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;num_trainers&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">use_cuda</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
         <span class="n">gpu_per_actor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;gpu_per_actor&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;gpu_per_actor&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mi">0</span>
