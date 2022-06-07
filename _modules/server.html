@@ -202,8 +202,7 @@
 
 
 <div class="viewcode-block" id="BladesServer"><a class="viewcode-back" href="../references/server.html#server.BladesServer">[docs]</a><span class="k">class</span> <span class="nc">BladesServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Simulating the server of the federated learning system.</span>
+    <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Simulating the server of the federated learning system.</span>
 <span class="sd">        </span>
 <span class="sd">        :param  optimizer: The global optimizer, which can be any optimizer from Pytorch.</span>
 <span class="sd">        :type optimizer: torch.optim.Optimizer</span>
@@ -214,11 +213,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
     
-    <span class="k">def</span> <span class="nf">get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span>
+<div class="viewcode-block" id="BladesServer.get_opt"><a class="viewcode-back" href="../references/server.html#server.BladesServer.get_opt">[docs]</a>    <span class="k">def</span> <span class="nf">get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the global optimizer.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span></div>
     
-    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+<div class="viewcode-block" id="BladesServer.get_model"><a class="viewcode-back" href="../references/server.html#server.BladesServer.get_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the current global model.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span></div>
     
     <span class="k">def</span> <span class="nf">apply_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">beg</span> <span class="o">=</span> <span class="mi">0</span>
