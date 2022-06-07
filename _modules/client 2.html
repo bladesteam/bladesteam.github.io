@@ -236,6 +236,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">json_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>
     
+    <span class="k">def</span> <span class="nf">detach_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+        <span class="c1"># self.optimizer = torch.optim.SGD(self.model.parameters(), lr=self.optimizer.param_groups[0][&#39;lr&#39;])</span>
     
     <span class="k">def</span> <span class="nf">set_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
@@ -309,6 +313,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_save_grad</span><span class="p">()</span>
     
     <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">round_number</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">use_actor</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">cifar10_stats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.4914</span><span class="p">,</span> <span class="mf">0.4822</span><span class="p">,</span> <span class="mf">0.4465</span><span class="p">),</span>
+            <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.2023</span><span class="p">,</span> <span class="mf">0.1994</span><span class="p">,</span> <span class="mf">0.2010</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+            <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+            <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">cifar10_stats</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span> <span class="n">cifar10_stats</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">]),</span>
+        <span class="p">])</span>
         <span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">test_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
         <span class="n">r</span> <span class="o">=</span> <span class="p">{</span>
@@ -342,7 +354,7 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span>
     
-    <span class="k">def</span> <span class="nf">local_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">,</span> <span class="n">use_actor</span><span class="p">,</span> <span class="n">data_batches</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">local_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">,</span> <span class="n">use_actor</span><span class="p">,</span> <span class="n">data_batches</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_save_para</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">use_actor</span><span class="p">:</span>
             <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
@@ -424,7 +436,12 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">_ClientWithMomentum</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
+<div class="viewcode-block" id="ClientWithMomentum"><a class="viewcode-back" href="../references/client.html#client.ClientWithMomentum">[docs]</a><span class="k">class</span> <span class="nc">ClientWithMomentum</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Note that we use `ClientWithMomentum` instead of using multiple `torch.optim.Optimizer`</span>
+<span class="sd">    because we need to explicitly update the `momentum_buffer`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">momentum</span>
@@ -447,7 +464,7 @@
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]:</span>
                 <span class="n">param_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
                 <span class="n">layer_gradients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_state</span><span class="p">[</span><span class="s2">&quot;momentum_buffer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ByzantineClient"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient">[docs]</a><span class="k">class</span> <span class="nc">ByzantineClient</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>

@@ -2,10 +2,12 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API Reference" href="references/api_reference.html" /><link rel="prev" title="Attacks" href="attacks.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/><title>Index - Blades documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/>
+        <title>Defenses - Blades documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -132,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -153,9 +155,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="attacks.html">Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="defenses.html">Defenses</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Defenses</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="references/api_reference.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="references/simulator.html">Simulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="references/client.html">Client</a></li>
@@ -188,112 +190,94 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a></div>
+          <section id="defenses">
+<h1>Defenses<a class="headerlink" href="#defenses" title="Permalink to this headline"></a></h1>
+<section id="build-in-attacks">
+<h2>Build-in Attacks<a class="headerlink" href="#build-in-attacks" title="Permalink to this headline"></a></h2>
+<section id="robust-aggregation">
+<h3>Robust Aggregation<a class="headerlink" href="#robust-aggregation" title="Permalink to this headline"></a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Methods</p></th>
+<th class="head"><p>Descriptions</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Krum</strong></p></td>
+<td><p><em>Blanchard et al.</em> <a class="reference external" href="https://proceedings.neurips.cc/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html">Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent</a>, <em>NIPS’17</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/krum.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GeoMed</strong></p></td>
+<td><p><em>Chen et al.</em> <a class="reference external" href="https://arxiv.org/abs/1705.05491">Distributed Statistical Machine Learning in Adversarial Settings: Byzantine Gradient Descent</a>, <em>POMACS’18</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/geomed.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>AutoGM</strong></p></td>
+<td><p><em>Li et al.</em> <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9614992">Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT</a>, <em>IEEE TII’22</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/autogm.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Median</strong></p></td>
+<td><p><em>Yin et al.</em> <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a>, <em>ICML’18</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/median.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TrimmedMean</strong></p></td>
+<td><p><em>Yin et al.</em> <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a>, <em>ICML’18</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/trimmedmean.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>CenteredClipping</strong></p></td>
+<td><p><em>Karimireddy et al.</em> <a class="reference external" href="http://proceedings.mlr.press/v139/karimireddy21a.html">Learning from History for Byzantine Robust Optimization</a>, <em>ICML’21</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/centeredclipping.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Clustering</strong></p></td>
+<td><p><em>Sattler et al.</em> <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9054676">On the byzantine robustness of clustered federated learning</a>, <em>ICASSP’20</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/clustering.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ClippedClustering</strong></p></td>
+<td><p><em>Li et al.</em> <a class="reference external" href="https://www.techrxiv.org/articles/preprint/An_Experimental_Study_of_Byzantine-Robust_Aggregation_Schemes_in_Federated_Learning/19560325">An Experimental Study of Byzantine-Robust sAggregation Schemes in Federated Learning</a>, <em>TechRxiv’22</em></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/clippedclustering.py">[<strong>Example</strong>]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="B" class="genindex-section">
-  <h2>B</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/client.html#client.BladesClient">BladesClient (class in client)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/client.html#client.ByzantineClient">ByzantineClient (class in client)</a>
-</li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="C" class="genindex-section">
-  <h2>C</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    client
-
-        <ul>
-          <li><a href="references/client.html#module-client">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
+<section id="customize-defense">
+<h2>Customize Defense<a class="headerlink" href="#customize-defense" title="Permalink to this headline"></a></h2>
 </section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    module
-
-        <ul>
-          <li><a href="references/client.html#module-client">client</a>
-</li>
-          <li><a href="references/simulator.html#module-simulator">simulator</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="O" class="genindex-section">
-  <h2>O</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/client.html#client.ByzantineClient.omniscient_callback">omniscient_callback() (client.ByzantineClient method)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="R" class="genindex-section">
-  <h2>R</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/simulator.html#simulator.Simulator.run">run() (simulator.Simulator method)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="S" class="genindex-section">
-  <h2>S</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/client.html#client.BladesClient.set_model">set_model() (client.BladesClient method)</a>
-</li>
-        <li>
-    simulator
-
-        <ul>
-          <li><a href="references/simulator.html#module-simulator">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="references/simulator.html#simulator.Simulator">Simulator (class in simulator)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="references/api_reference.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">API Reference</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="attacks.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Attacks</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -314,8 +298,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Defenses</a><ul>
+<li><a class="reference internal" href="#build-in-attacks">Build-in Attacks</a><ul>
+<li><a class="reference internal" href="#robust-aggregation">Robust Aggregation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#customize-defense">Customize Defense</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

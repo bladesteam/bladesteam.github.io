@@ -207,9 +207,9 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">ray.train</span> <span class="kn">import</span> <span class="n">Trainer</span>
 
-<span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">TorchClient</span>
+<span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">BladesClient</span>
 <span class="kn">from</span> <span class="nn">blades.datasets.datasets</span> <span class="kn">import</span> <span class="n">FLDataset</span>
-<span class="kn">from</span> <span class="nn">blades.server</span> <span class="kn">import</span> <span class="n">TorchServer</span>
+<span class="kn">from</span> <span class="nn">blades.server</span> <span class="kn">import</span> <span class="n">BladesServer</span>
 <span class="kn">from</span> <span class="nn">blades.utils</span> <span class="kn">import</span> <span class="n">top1_accuracy</span><span class="p">,</span> <span class="n">initialize_logger</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -343,7 +343,7 @@
                 <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">TorchClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">BladesClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">cache_random_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -371,13 +371,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">register_omniscient_callback</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">parallel_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clients</span><span class="p">,</span>
-                      <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TorchClient</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># clients is added due to the changing of self.clients</span>
+                      <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">BladesClient</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># clients is added due to the changing of self.clients</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache_random_state</span><span class="p">()</span>
         <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span> <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">restore_random_state</span><span class="p">()</span>
     
     <span class="k">def</span> <span class="nf">parallel_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clients</span><span class="p">,</span>
-                     <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TorchClient</span><span class="p">],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>  <span class="c1"># clients is added due to the changing of self.clients</span>
+                     <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">BladesClient</span><span class="p">],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>  <span class="c1"># clients is added due to the changing of self.clients</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cache_random_state</span><span class="p">()</span>
@@ -517,7 +517,7 @@
             <span class="k">raise</span> <span class="ne">NotImplementedError</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">client_opt</span> <span class="o">=</span> <span class="n">client_optimizer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">TorchServer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server_opt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">BladesServer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server_opt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">parallel_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">client</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">set_loss</span><span class="p">(</span><span class="n">loss</span><span class="p">))</span>
         <span class="n">global_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
