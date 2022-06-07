@@ -198,12 +198,77 @@
         <article role="main">
           <section id="module-client">
 <span id="client"></span><h1>Client<a class="headerlink" href="#module-client" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="client.ByzantineClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">ByzantineClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ByzantineClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ByzantineClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#client.TorchClient" title="client.TorchClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">client.TorchClient</span></code></a></p>
+<p>Base class for Byzantine clients.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your Byzantine clients should also subclass this class.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="client.ByzantineClient.omniscient_callback">
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ByzantineClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ByzantineClient.omniscient_callback" title="Permalink to this definition"></a></dt>
+<dd><p>A function that will be registered by the simulator and execute after each communication round.
+It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
+clients. Your Byzantine client can overwrite this method to access information from the server
+and other clients.</p>
 <dl class="field-list simple">
-<dt class="field-odd">members</dt>
-<dd class="field-odd"><p></p></dd>
-<dt class="field-even">show-inheritance</dt>
-<dd class="field-even"><p></p></dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<em>Simulator.</em>) – The running simulator.</p>
+</dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client.ClientWithMomentum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">ClientWithMomentum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">momentum</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ClientWithMomentum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ClientWithMomentum" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#client.TorchClient" title="client.TorchClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">client.TorchClient</span></code></a></p>
+<p>Note that we use <cite>ClientWithMomentum</cite> instead of using multiple <cite>torch.optim.Optimizer</cite>
+because we need to explicitly update the <cite>momentum_buffer</cite>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client.TorchClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">TorchClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#TorchClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.TorchClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all clients.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your honest clients should also subclass this class.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_id</strong> (<em>str</em><em>, </em><em>optional.</em>) – an unique id of the client.</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em><em>, or </em><em>str</em>) – if specified, all parameters will be copied to that device</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="client.TorchClient.set_model">
+<span class="sig-name descname"><span class="pre">set_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#TorchClient.set_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.TorchClient.set_model" title="Permalink to this definition"></a></dt>
+<dd><p>Deep copy the given model to the client.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To improve the scalability, this API may be removed in the future,</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – a Torch model for current client.</p></li>
+<li><p><strong>opt</strong> (<em>torch.optim.Optimizer</em>) – client optimizer</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – local learning rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
