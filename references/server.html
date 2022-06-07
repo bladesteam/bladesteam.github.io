@@ -202,14 +202,14 @@
 <span id="server"></span><h1>Server<a class="headerlink" href="#module-server" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="server.BladesServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.</span></span><span class="sig-name descname"><span class="pre">BladesServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.optim.optimizer.Optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.</span></span><span class="sig-name descname"><span class="pre">BladesServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.optim.optimizer.Optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Simulating the server of the federated learning system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>optimizer</strong> (<em>torch.optim.Optimizer</em>) – The global optimizer, which can be any optimizer from Pytorch.</p></li>
-<li><p><strong>model</strong> – The global model</p></li>
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The global model</p></li>
 </ul>
 </dd>
 </dl>
