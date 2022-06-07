@@ -208,7 +208,7 @@
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
 
 
-<div class="viewcode-block" id="TorchClient"><a class="viewcode-back" href="../references/client.html#client.TorchClient">[docs]</a><span class="k">class</span> <span class="nc">TorchClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BladesClient"><a class="viewcode-back" href="../references/client.html#client.BladesClient">[docs]</a><span class="k">class</span> <span class="nc">BladesClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for all clients.</span>
 <span class="sd">    </span>
 <span class="sd">        .. note::</span>
@@ -253,7 +253,7 @@
     <span class="k">def</span> <span class="nf">get_is_byzantine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_byzantine</span>
     
-<div class="viewcode-block" id="TorchClient.set_model"><a class="viewcode-back" href="../references/client.html#client.TorchClient.set_model">[docs]</a>    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
+<div class="viewcode-block" id="BladesClient.set_model"><a class="viewcode-back" href="../references/client.html#client.BladesClient.set_model">[docs]</a>    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&#39;&#39;&#39; Deep copy the given model to the client.</span>
 <span class="sd">        </span>
 <span class="sd">            .. note::</span>
@@ -436,7 +436,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ClientWithMomentum"><a class="viewcode-back" href="../references/client.html#client.ClientWithMomentum">[docs]</a><span class="k">class</span> <span class="nc">ClientWithMomentum</span><span class="p">(</span><span class="n">TorchClient</span><span class="p">):</span>
+<div class="viewcode-block" id="ClientWithMomentum"><a class="viewcode-back" href="../references/client.html#client.ClientWithMomentum">[docs]</a><span class="k">class</span> <span class="nc">ClientWithMomentum</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Note that we use `ClientWithMomentum` instead of using multiple `torch.optim.Optimizer`</span>
 <span class="sd">    because we need to explicitly update the `momentum_buffer`.</span>
@@ -467,7 +467,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ByzantineClient"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient">[docs]</a><span class="k">class</span> <span class="nc">ByzantineClient</span><span class="p">(</span><span class="n">TorchClient</span><span class="p">):</span>
+<div class="viewcode-block" id="ByzantineClient"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient">[docs]</a><span class="k">class</span> <span class="nc">ByzantineClient</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for Byzantine clients.</span>
 <span class="sd">    </span>
 <span class="sd">            .. note::</span>
