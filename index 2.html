@@ -3,11 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta content="Learn how to install the Awesome Theme for your documentation project." name="description" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Attacks" href="attacks.html" /><link rel="prev" title="Welcome to Blades documentation" href="index.html" />
+<meta content="Create functional and beautiful websites for your documentation with Sphinx and the Awesome Sphinx Theme." name="description" />
+<meta content="Documentation, Sphinx, Python" name="keywords" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Installation" href="install.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/>
-        <title>Installation - Blades documentation</title>
+        <title>Blades documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -124,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Blades  documentation</div></a>
+      <a href="#"><div class="brand">Blades  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +145,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
   <span class="sidebar-brand-text">Blades  documentation</span>
@@ -156,8 +157,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Installation</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attacks.html">Attacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="defenses.html">Defenses</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="references/api_reference.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -198,23 +199,77 @@
           </label>
         </div>
         <article role="main">
-          <section id="installation">
-<span id="sec-install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
-<section id="single-machine-simulation">
-<h2>Single Machine Simulation<a class="headerlink" href="#single-machine-simulation" title="Permalink to this headline"></a></h2>
-<p>To use <code class="docutils literal notranslate"><span class="pre">Blades</span></code> on a single machine, you only need to install the simulator using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+          <!-- vale Google.Headings = NO -->
+<section id="welcome-to-blades-documentation">
+<h1>Welcome to Blades documentation<a class="headerlink" href="#welcome-to-blades-documentation" title="Permalink to this headline"></a></h1>
+<!-- vale Google.Headings = YES -->
+<p class="lead">A simulator for Byzantine-robust federated Learning with Attacks and Defenses Experimental Simulation</p>
+<hr class="docutils" />
+<section id="get-started">
+<h2>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>Install the simulator:</p>
 <div class="highlight-terminal notranslate"><div class="highlight"><pre><span></span>pip install blades
 </pre></div>
 </div>
-</section>
-<section id="ray-cluster-simulation">
-<h2>Ray Cluster Simulation<a class="headerlink" href="#ray-cluster-simulation" title="Permalink to this headline"></a></h2>
-<p>Borrowing the power of <a class="reference external" href="https://docs.ray.io/en/latest/index.html#">Ray</a>, <code class="docutils literal notranslate"><span class="pre">Blades</span></code> can be easily adapted to clusters without
-changing a single line of the code.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>See how to deploy <code class="docutils literal notranslate"><span class="pre">Ray</span> <span class="pre">cluster</span></code> according to the <a class="reference external" href="https://docs.ray.io/en/latest/cluster/user-guide.html">official guide</a>.
-Make sure that <code class="docutils literal notranslate"><span class="pre">Ray</span></code> on all machines has the same version.</p>
+<p><a class="reference internal" href="install.html#sec-install"><span class="std std-ref">Installation</span></a></p>
+</div>
+</li>
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">Blades</span></code> with the following example:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
+
+<span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">CIFAR10</span>
+<span class="kn">from</span> <span class="nn">blades.models.cifar10</span> <span class="kn">import</span> <span class="n">CCTNet</span>
+<span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
+
+<span class="n">cifar10</span> <span class="o">=</span> <span class="n">CIFAR10</span><span class="p">(</span><span class="n">num_clients</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># built-in federated cifar10 dataset</span>
+
+<span class="c1"># configuration parameters</span>
+<span class="n">conf_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
+    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># defense: robust aggregation</span>
+    <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># number of byzantine clients</span>
+    <span class="s2">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;alie&quot;</span><span class="p">,</span>  <span class="c1"># attack strategy</span>
+    <span class="s2">&quot;attack_para&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
+                    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
+<span class="p">}</span>
+
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="o">**</span><span class="n">conf_params</span><span class="p">)</span>
+
+<span class="c1"># runtime parameters</span>
+<span class="n">run_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">CCTNet</span><span class="p">(),</span>  <span class="c1"># global model</span>
+    <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># server optimizer</span>
+    <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
+    <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
+    <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
+    <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
+<span class="p">}</span>
+<span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="attacks.html#sec-attacks"><span class="std std-ref">Attacks</span></a></p>
+</div>
+<p>In the <em>attacks</em> section, you can learn more about the
+<a class="reference internal" href="attacks.html#sec-buildinattacks"><span class="std std-ref">Build-in Attacks</span></a> and
+<a class="reference internal" href="attacks.html#sec-customattacks"><span class="std std-ref">Customize Attacks</span></a>.</p>
+</section>
+<section id="give-feedback">
+<h2>Give feedback<a class="headerlink" href="#give-feedback" title="Permalink to this headline"></a></h2>
+<p>Is something broken or missing?
+Create a <a class="reference external" href="https://github.com/bladesteam/blades/issues/new">GitHub issue</a>.</p>
+<!-- vale Google.Headings = NO -->
+<!-- vale 18F.Headings = NO -->
+<div class="toctree-wrapper compound">
 </div>
 </section>
 </section>
@@ -224,26 +279,16 @@ Make sure that <code class="docutils literal notranslate"><span class="pre">Ray<
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="attacks.html">
+          <a class="next-page" href="install.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Attacks</div>
+                <div class="title">Installation</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Home</div>
-                
-              </div>
-            </a>
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -276,9 +321,9 @@ Make sure that <code class="docutils literal notranslate"><span class="pre">Ray<
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Installation</a><ul>
-<li><a class="reference internal" href="#single-machine-simulation">Single Machine Simulation</a></li>
-<li><a class="reference internal" href="#ray-cluster-simulation">Ray Cluster Simulation</a></li>
+<li><a class="reference internal" href="#">Welcome to Blades documentation</a><ul>
+<li><a class="reference internal" href="#get-started">Get started</a></li>
+<li><a class="reference internal" href="#give-feedback">Give feedback</a></li>
 </ul>
 </li>
 </ul>
