@@ -225,6 +225,24 @@
 <dd><p>Returns the current global model.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="server.BladesServer.apply_update">
+<span class="sig-name descname"><span class="pre">apply_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/server.html#BladesServer.apply_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.apply_update" title="Permalink to this definition"></a></dt>
+<dd><p>Apply a stop of global optimization.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>..note:</dt><dd><p>The input should be a <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>, which will be converted to <code class="docutils literal notranslate"><span class="pre">pseudo-gradient</span></code>
+layer by layer.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>update</strong> (<em>torch.Tensor</em>) – The aggregated update.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
