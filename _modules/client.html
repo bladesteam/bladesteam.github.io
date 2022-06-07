@@ -436,7 +436,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ClientWithMomentum"><a class="viewcode-back" href="../references/client.html#client.ClientWithMomentum">[docs]</a><span class="k">class</span> <span class="nc">ClientWithMomentum</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_ClientWithMomentum</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">momentum</span>
@@ -459,7 +459,7 @@
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]:</span>
                 <span class="n">param_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
                 <span class="n">layer_gradients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_state</span><span class="p">[</span><span class="s2">&quot;momentum_buffer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">layer_gradients</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ByzantineClient"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient">[docs]</a><span class="k">class</span> <span class="nc">ByzantineClient</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
