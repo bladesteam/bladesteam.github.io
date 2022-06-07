@@ -198,7 +198,6 @@
         <article role="main">
           <h1>Source code for simulator</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
@@ -213,10 +212,6 @@
 <span class="kn">from</span> <span class="nn">blades.server</span> <span class="kn">import</span> <span class="n">BladesServer</span>
 <span class="kn">from</span> <span class="nn">blades.utils</span> <span class="kn">import</span> <span class="n">top1_accuracy</span><span class="p">,</span> <span class="n">initialize_logger</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># from aggregators.mean import Mean</span>
 
 <span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
 <span class="k">class</span> <span class="nc">RayActor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -261,14 +256,21 @@
 <div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.</span>
 <span class="sd">    </span>
+<span class="sd">    :param dataset: FLDataset that consists local data of all clients</span>
 <span class="sd">    :param aggregator: String (name of build-in aggregation scheme) or a callable which takes a list of tensors and returns</span>
 <span class="sd">                an aggregated tensor.</span>
-<span class="sd">    :param name: name of human.</span>
+<span class="sd">    :param num_byzantine: Number of Byzantine clients under build-in attack. It should be ``0`` if you have custom attack strategy.</span>
+<span class="sd">    :type num_byzantine: int, optional</span>
 <span class="sd">    :param attack: ``None`` by default. One of the build-in attacks, i.e., ``None``, ``noise``, ``labelflipping``, ``signflipping``, ``alie``,</span>
 <span class="sd">                    ``ipm``. It should be ``None`` if you have custom attack strategy.</span>
 <span class="sd">    :type attack: str</span>
-<span class="sd">    :param num_byzantine: Number of Byzantine clients under build-in attack. It should be ``0`` if you have custom attack strategy.</span>
-<span class="sd">    :type num_byzantine: int, optional</span>
+<span class="sd">    :param num_actors: Number of ``Ray actors`` that will be created for local training.</span>
+<span class="sd">    :type num_actors: int</span>
+<span class="sd">    :param mode: Training mode, either ``actor`` or ``trainer``. For large scale client population, ``actor mode`` is favorable</span>
+<span class="sd">    :type mode: str</span>
+<span class="sd">    :param log_path: The path of logging</span>
+<span class="sd">    :type log_path: str</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -279,7 +281,6 @@
             <span class="n">attack</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;None&#39;</span><span class="p">,</span>
             <span class="n">num_actors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
             <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;actor&#39;</span><span class="p">,</span>
-            <span class="n">log_interval</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">log_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./outputs&quot;</span><span class="p">,</span>
             <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">use_cuda</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -293,23 +294,19 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">aggregator</span>
         <span class="n">num_trainers</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;num_trainers&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;num_trainers&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">use_cuda</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
         <span class="n">gpu_per_actor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;gpu_per_actor&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;gpu_per_actor&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">use_cuda</span> <span class="ow">or</span> <span class="s2">&quot;gpu_per_actor&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
         <span class="n">attack_para</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;attack_para&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;attack_para&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span> <span class="o">=</span> <span class="n">log_path</span>
         <span class="n">initialize_logger</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_actor</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;actor&#39;</span> <span class="k">else</span> <span class="kc">False</span>
         
-        <span class="c1"># self.server_opt = torch.optim.SGD(model.parameters(), lr=lr)</span>
-        <span class="c1"># self.server = TorchServer(self.server_opt, model=model)</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">!=</span> <span class="n">FLDataset</span><span class="p">:</span>
             <span class="n">traindls</span><span class="p">,</span> <span class="n">testdls</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_dls</span><span class="p">()</span>
             <span class="n">dataset</span> <span class="o">=</span> <span class="n">FLDataset</span><span class="p">(</span><span class="n">traindls</span><span class="p">,</span> <span class="n">testdls</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log_interval</span> <span class="o">=</span> <span class="n">log_interval</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;top1&quot;</span><span class="p">:</span> <span class="n">top1_accuracy</span><span class="p">}</span> <span class="k">if</span> <span class="n">metrics</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">metrics</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="o">=</span> <span class="n">use_cuda</span>
-        <span class="c1"># self.debug = debug</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">omniscient_callbacks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_states</span> <span class="o">=</span> <span class="p">{}</span>
         
@@ -345,7 +342,7 @@
                 <span class="n">module_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.attackers.</span><span class="si">%s</span><span class="s1">client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="p">)</span>
                 <span class="n">attack_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
                 <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">client</span> <span class="o">=</span> <span class="n">BladesClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
@@ -369,7 +366,7 @@
         <span class="n">torch</span><span class="o">.</span><span class="n">set_rng_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_states</span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">])</span>
         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_states</span><span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">])</span>
     
-    <span class="k">def</span> <span class="nf">register_omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_register_omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">omniscient_callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">register_attackers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clients</span><span class="p">):</span>
@@ -377,7 +374,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)):</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_id</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_omniscient_callback</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_omniscient_callback</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">parallel_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clients</span><span class="p">,</span>
                       <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">BladesClient</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># clients is added due to the changing of self.clients</span>
