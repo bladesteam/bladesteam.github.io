@@ -4,5 +4,7 @@ Client
 
 ```{eval-rst}
 .. automodule:: client    
+
+.. autoclass:: Super
     :members:
 ```
