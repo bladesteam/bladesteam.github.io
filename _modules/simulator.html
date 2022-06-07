@@ -157,7 +157,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../attacks.html">Attacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../defenses.html">Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">API Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../references/api_reference.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/simulator.html">Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/client.html">Client</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -201,7 +205,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="c1"># from torch import nn</span>
 <span class="kn">from</span> <span class="nn">ray.train</span> <span class="kn">import</span> <span class="n">Trainer</span>
 
 <span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">TorchClient</span>
@@ -254,7 +257,7 @@
         <span class="k">return</span> <span class="n">update</span>
 
 
-<div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/api_reference.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.</span>
 <span class="sd">    </span>
 <span class="sd">    :param aggregator: A callable which takes a list of tensors and returns</span>
@@ -473,7 +476,7 @@
         <span class="c1"># print(f&quot;Test global round {global_round}, loss: {loss}, top1: {top1}&quot;)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test global round </span><span class="si">{</span><span class="n">global_round</span><span class="si">}</span><span class="s2">, loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s2">, top1: </span><span class="si">{</span><span class="n">top1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
-<div class="viewcode-block" id="Simulator.run"><a class="viewcode-back" href="../references/api_reference.html#simulator.Simulator.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+<div class="viewcode-block" id="Simulator.run"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
             <span class="n">server_optimizer</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>

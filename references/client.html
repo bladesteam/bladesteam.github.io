@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Simulator" href="simulator.html" /><link rel="prev" title="Defenses" href="../defenses.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Simulator" href="simulator.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/>
-        <title>API Reference - Blades documentation</title>
+        <title>Client - Blades documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -158,9 +158,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../attacks.html">Attacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../defenses.html">Defenses</a></li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="api_reference.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="simulator.html">Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Client</a></li>
 </ul>
 </li>
 </ul>
@@ -196,10 +196,76 @@
           </label>
         </div>
         <article role="main">
-          <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
+          <section id="module-client">
+<span id="client"></span><h1>Client<a class="headerlink" href="#module-client" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="client.ByzantineClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">ByzantineClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ByzantineClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ByzantineClient" title="Permalink to this definition"></a></dt>
+<dd><p>Base class for Byzantine clients.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your Byzantine clients should also subclass this class.</p>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="client.ByzantineClient.omniscient_callback">
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ByzantineClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ByzantineClient.omniscient_callback" title="Permalink to this definition"></a></dt>
+<dd><p>A function that will be registered by the simulator and execute after each communication round.
+It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
+clients. Your Byzantine client can overwrite this method to access information from the server
+and other clients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<em>Simulator.</em>) – The running simulator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client.ClientWithMomentum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">ClientWithMomentum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">momentum</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#ClientWithMomentum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.ClientWithMomentum" title="Permalink to this definition"></a></dt>
+<dd><p>Note that we use <cite>ClientWithMomentum</cite> instead of using multiple <cite>torch.optim.Optimizer</cite>
+because we need to explicitly update the <cite>momentum_buffer</cite>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client.TorchClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">TorchClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#TorchClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.TorchClient" title="Permalink to this definition"></a></dt>
+<dd><p>Base class for all clients.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your honest clients should also subclass this class.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_id</strong> (<em>str</em><em>, </em><em>optional.</em>) – an unique id of the client.</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em><em>, or </em><em>str</em>) – if specified, all parameters will be copied to that device</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="client.TorchClient.set_model">
+<span class="sig-name descname"><span class="pre">set_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#TorchClient.set_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.TorchClient.set_model" title="Permalink to this definition"></a></dt>
+<dd><p>Deep copy the given model to the client.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To improve the scalability, this API may be removed in the future,</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – a Torch model for current client.</p></li>
+<li><p><strong>opt</strong> (<em>torch.optim.Optimizer</em>) – client optimizer</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – local learning rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
@@ -207,23 +273,15 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="simulator.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Simulator</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../defenses.html">
+          
+          <a class="prev-page" href="simulator.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Defenses</div>
+                <div class="title">Simulator</div>
                 
               </div>
             </a>
