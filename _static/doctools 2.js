@@ -296,7 +296,7 @@ var Documentation = {
   },
 
   initOnKeyListeners: function() {
-    // only install a listener if it is really needed
+    // only install.md a listener if it is really needed
     if (!DOCUMENTATION_OPTIONS.NAVIGATION_WITH_KEYS &&
         !DOCUMENTATION_OPTIONS.ENABLE_SEARCH_SHORTCUTS)
         return;
