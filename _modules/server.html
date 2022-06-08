@@ -199,19 +199,32 @@
         <article role="main">
           <h1>Source code for server</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">torch</span>
-
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <div class="viewcode-block" id="BladesServer"><a class="viewcode-back" href="../references/server.html#server.BladesServer">[docs]</a><span class="k">class</span> <span class="nc">BladesServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Simulating the server of the federated learning system.</span>
 <span class="sd">        </span>
+<span class="sd">        :ivar aggregator: a callable which takes a list of tensors and returns</span>
+<span class="sd">                an aggregated tensor.</span>
+<span class="sd">        :vartype aggregator: callable</span>
+<span class="sd">    </span>
 <span class="sd">        :param  optimizer: The global optimizer, which can be any optimizer from Pytorch.</span>
 <span class="sd">        :type optimizer: torch.optim.Optimizer</span>
 <span class="sd">        :param model: The global model</span>
 <span class="sd">        :type model: torch.nn.Module</span>
+<span class="sd">        :param aggregator: a callable which takes a list of tensors and returns</span>
+<span class="sd">                an aggregated tensor.</span>
+<span class="sd">        :type aggregator: callable</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">optimizer</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">,</span>
+                 <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+                 <span class="n">aggregator</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">list</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
+                 <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">aggregator</span>
     
 <div class="viewcode-block" id="BladesServer.get_opt"><a class="viewcode-back" href="../references/server.html#server.BladesServer.get_opt">[docs]</a>    <span class="k">def</span> <span class="nf">get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
@@ -219,7 +232,16 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span></div>
     
-<div class="viewcode-block" id="BladesServer.get_model"><a class="viewcode-back" href="../references/server.html#server.BladesServer.get_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BladesServer.zero_grad"><a class="viewcode-back" href="../references/server.html#server.BladesServer.zero_grad">[docs]</a>    <span class="k">def</span> <span class="nf">zero_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_to_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the gradients of all optimized :class:`torch.Tensor` s to zero.</span>
+<span class="sd">        It should be called before assigning pseudo-gradient</span>
+
+<span class="sd">        :param set_to_none: See `Pytorch documentation &lt;https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html&gt;`_.</span>
+<span class="sd">        :type set_to_none: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">set_to_none</span><span class="o">=</span><span class="n">set_to_none</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="BladesServer.get_model"><a class="viewcode-back" href="../references/server.html#server.BladesServer.get_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Returns the current global model.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -227,7 +249,7 @@
     
 <div class="viewcode-block" id="BladesServer.apply_update"><a class="viewcode-back" href="../references/server.html#server.BladesServer.apply_update">[docs]</a>    <span class="k">def</span> <span class="nf">apply_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Apply a stop of global optimization.</span>
+<span class="sd">        Apply a step of global optimization.</span>
 <span class="sd">            </span>
 <span class="sd">            .. note::</span>
 <span class="sd">                The input should be a ``Tensor``, which will be converted to ``pseudo-gradient``</span>
@@ -236,6 +258,7 @@
 <span class="sd">        :param update: The aggregated update.</span>
 <span class="sd">        :type update: torch.Tensor</span>
 <span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
         <span class="n">beg</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]:</span>
@@ -243,7 +266,7 @@
                     <span class="k">continue</span>
                 <span class="n">end</span> <span class="o">=</span> <span class="n">beg</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
                 <span class="n">x</span> <span class="o">=</span> <span class="n">update</span><span class="p">[</span><span class="n">beg</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">reshape_as</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-                <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
                 <span class="n">beg</span> <span class="o">=</span> <span class="n">end</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></div></div>
 </pre></div>
