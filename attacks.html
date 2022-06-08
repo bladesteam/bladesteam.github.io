@@ -249,29 +249,28 @@
 <span class="kn">from</span> <span class="nn">blades.models.cifar10</span> <span class="kn">import</span> <span class="n">CCTNet</span>
 <span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
 
-
 <span class="n">cifar10</span> <span class="o">=</span> <span class="n">CIFAR10</span><span class="p">(</span><span class="n">num_clients</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># built-in federated cifar10 dataset</span>
 
 
 <span class="k">class</span> <span class="nc">MaliciousClient</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
-        <span class="n">updates</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">simulator</span><span class="o">.</span><span class="n">_clients</span><span class="p">:</span>
-            <span class="n">is_byzantine</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get_is_byzantine</span><span class="p">()</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_byzantine</span><span class="p">:</span>
-                <span class="n">updates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_update</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_save_update</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">simulator</span><span class="o">.</span><span class="n">_clients</span><span class="p">:</span>
+      <span class="n">is_byzantine</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get_is_byzantine</span><span class="p">()</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">is_byzantine</span><span class="p">:</span>
+        <span class="n">updates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_update</span><span class="p">())</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">save_update</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
 
 
 <span class="c1"># configuration parameters</span>
 <span class="n">conf_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
-    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># defense: robust aggregation</span>
-    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
-    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
+  <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
+  <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># defense: robust aggregation</span>
+  <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+  <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
 <span class="p">}</span>
 
 <span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -282,13 +281,13 @@
 
 <span class="c1"># runtime parameters</span>
 <span class="n">run_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">CCTNet</span><span class="p">(),</span>  <span class="c1"># global model</span>
-    <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># server optimizer</span>
-    <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
-    <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
-    <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
-    <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
-    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">CCTNet</span><span class="p">(),</span>  <span class="c1"># global model</span>
+  <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># server optimizer</span>
+  <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
+  <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
+  <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
+  <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
+  <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
 <span class="p">}</span>
 <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
 
