@@ -3,8 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta content="Learn how to install the Awesome Theme for your documentation project." name="description" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Defenses" href="defenses.html" /><link rel="prev" title="Installation" href="install.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Defenses" href="defenses.html" /><link rel="prev" title="Welcome to Blades documentation" href="index.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.06.04.1"/>
         <title>Attacks - Blades documentation</title>
@@ -155,9 +154,8 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Attacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="defenses.html">Defenses</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="references/api_reference.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -199,15 +197,22 @@
           </label>
         </div>
         <article role="main">
-          <section id="attacks">
-<span id="sec-attacks"></span><h1>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline"></a></h1>
+          <p>(sec:attacks)=</p>
+<section id="attacks">
+<h1>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline"></a></h1>
+<p>(sec:buildinattacks)=</p>
 <section id="build-in-attacks">
-<span id="sec-buildinattacks"></span><h2>Build-in Attacks<a class="headerlink" href="#build-in-attacks" title="Permalink to this headline"></a></h2>
+<h2>Build-in Attacks<a class="headerlink" href="#build-in-attacks" title="Permalink to this headline"></a></h2>
 <p>The following attack strategies are currently implemented in <code class="docutils literal notranslate"><span class="pre">Blades</span></code>:</p>
 <section id="untargeted-attack">
 <h3>Untargeted Attack<a class="headerlink" href="#untargeted-attack" title="Permalink to this headline"></a></h3>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Strategy</p></th>
 <th class="head"><p>Descriptions</p></th>
@@ -217,23 +222,23 @@
 <tbody>
 <tr class="row-even"><td><p><strong>Noise</strong></p></td>
 <td><p>Put random noise to the updates.</p></td>
-<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/noiseclient.py">[<strong>Example</strong>]</a></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/noiseclient.py">[**Example**]</a></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Labelflipping</strong></p></td>
 <td><p><em>Fang et al.</em> <a class="reference external" href="https://www.usenix.org/conference/usenixsecurity20/presentation/fang">Local Model Poisoning Attacks to Byzantine-Robust Federated Learning</a>, <em>USENIX Security’ 20</em></p></td>
-<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/labelflippingclient.py">[<strong>Example</strong>]</a></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/labelflippingclient.py">[**Example**]</a></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Signflipping</strong></p></td>
 <td><p><em>Li et al.</em> <a class="reference external" href="https://ojs.aaai.org/index.php/AAAI/article/view/3968">RSA: Byzantine-Robust Stochastic Aggregation Methods for Distributed Learning from Heterogeneous Datasets</a>, <em>AAAI’ 19</em></p></td>
-<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/signflippingclient.py">[<strong>Example</strong>]</a></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/signflippingclient.py">[**Example**]</a></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>ALIE</strong></p></td>
 <td><p><em>Baruch et al.</em> <a class="reference external" href="https://proceedings.neurips.cc/paper/2019/hash/ec1c59141046cd1866bbbcdfb6ae31d4-Abstract.html">A little is enough: Circumventing defenses for distributed learning</a>, <em>NeurIPS’ 19</em></p></td>
-<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/alieclient.py">[<strong>Example</strong>]</a></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/alieclient.py">[**Example**]</a></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>IPM</strong></p></td>
 <td><p><em>Xie et al.</em> <a class="reference external" href="https://arxiv.org/abs/1903.03936">Fall of empires: Breaking byzantine- tolerant sgd by inner product manipulation</a>, <em>UAI’ 20</em></p></td>
-<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/ipmclient.py">[<strong>Example</strong>]</a></p></td>
+<td><p><a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/ipmclient.py">[**Example**]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -242,7 +247,8 @@
 </section>
 <section id="customize-attacks">
 <h2>Customize Attacks<a class="headerlink" href="#customize-attacks" title="Permalink to this headline"></a></h2>
-<p id="sec-customattacks">The following example shows how to customize attack strategy.</p>
+<p>(sec:customattacks)=
+The following example shows how to customize attack strategy.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">ByzantineClient</span>
 <span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">CIFAR10</span>
@@ -290,7 +296,6 @@
   <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
 <span class="p">}</span>
 <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </section>
@@ -310,14 +315,14 @@
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="install.html">
+          <a class="prev-page" href="index.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Installation</div>
+                <div class="title">Home</div>
                 
               </div>
             </a>
