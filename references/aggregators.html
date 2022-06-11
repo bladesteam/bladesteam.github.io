@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4. Aggregators &mdash; Blades  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="3.3. Client" href="client.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attacks.html">1. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defenses.html">2. Defenses</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">3. API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">3.3. Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Aggregators</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="api_reference.html"><span class="section-number">3. </span>API Reference</a> &raquo;</li>
+      <li><span class="section-number">3.4. </span>Aggregators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/references/aggregators.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-aggregators.krum">
+<span id="aggregators"></span><h1><span class="section-number">3.4. </span>Aggregators<a class="headerlink" href="#module-aggregators.krum" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="aggregators.krum.Krum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.krum.</span></span><span class="sig-name descname"><span class="pre">Krum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/krum.html#Krum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.krum.Krum" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://proceedings.neurips.cc/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html">“Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent”</a></p>
+<p>Given a collection of vectors, <code class="docutils literal notranslate"><span class="pre">Krum</span></code> strives to find one of the vector that is closest
+to another <span class="math notranslate nohighlight">\(K-M-2\)</span> ones with respect to squared Euclidean distance, which can be expressed by:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Krum := \{{\Delta}_i | i = \arg\min_{i \in [K]} \sum_{i \rightarrow j}  \lVert {\Delta}_i -
+         {\Delta}_j \rVert^2 \}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(i \rightarrow j\)</span> is the indices of the <span class="math notranslate nohighlight">\(K-M-2\)</span> nearest neighbours of <span class="math notranslate nohighlight">\({\Delta}_i\)</span>
+measured by squared <code class="docutils literal notranslate"><span class="pre">Euclidean</span> <span class="pre">distance</span></code>,  <span class="math notranslate nohighlight">\(K\)</span> is the number of clients in total, and <span class="math notranslate nohighlight">\(M\)</span>
+is the number of Byzantine clients.</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.geomed"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.geomed.Geomed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.geomed.</span></span><span class="sig-name descname"><span class="pre">Geomed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/geomed.html#Geomed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.geomed.Geomed" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://arxiv.org/abs/1705.05491">“Distributed Statistical Machine Learning in Adversarial Settings: Byzantine Gradient Descent”</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">GeoMed</span></code> aims to find a vector that minimizes the sum of its Euclidean distances to all the update vectors:</p>
+<div class="math notranslate nohighlight">
+\[GeoMed := \arg\min_{\boldsymbol{z}}  \sum_{k \in [K]} \lVert \boldsymbol{z} -  {\Delta}_i \rVert.\]</div>
+<p>There is no closed-form solution to the <code class="docutils literal notranslate"><span class="pre">GeoMed</span></code> problem. It is approximately solved using
+Weiszfeld’s algorithm in this implementation to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maxiter</strong> – Maximum number of Weiszfeld iterations. Default 100</p></li>
+<li><p><strong>eps</strong> – Smallest allowed value of denominator, to avoid divide by zero.
+Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
+<li><p><strong>ftol</strong> – If objective value does not improve by at least this <cite>ftol</cite> fraction, terminate the algorithm. Default 1e-10.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-aggregators.autogm"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.autogm.Autogm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.autogm.</span></span><span class="sig-name descname"><span class="pre">Autogm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/autogm.html#Autogm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.autogm.Autogm" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9614992">“Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT”</a></p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="client.html" class="btn btn-neutral float-left" title="3.3. Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Blades Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aggregators.krum &mdash; Blades  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attacks.html">1. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defenses.html">2. Defenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/api_reference.html">3. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../references/simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/client.html">3.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/aggregators.html">3.4. Aggregators</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>aggregators.krum</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for aggregators.krum</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.mean</span> <span class="kn">import</span> <span class="n">_BaseAggregator</span>
+
+
+<span class="k">def</span> <span class="nf">_compute_scores</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute scores for node i.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        distances {dict} -- A dict of dict of distance. distances[i][j] = dist. i, j starts with 0.</span>
+<span class="sd">        i {int} -- index of worker, starting from 0.</span>
+<span class="sd">        n {int} -- total number of workers</span>
+<span class="sd">        f {int} -- Total number of Byzantine workers.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float -- krum distance score of i.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">distances</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span>
+        <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">_s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">)[:</span> <span class="n">n</span> <span class="o">-</span> <span class="n">f</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_s</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_multi_krum</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Multi_Krum algorithm</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        distances {dict} -- A dict of dict of distance. distances[i][j] = dist. i, j starts with 0.</span>
+<span class="sd">        n {int} -- Total number of workers.</span>
+<span class="sd">        f {int} -- Total number of Byzantine workers.</span>
+<span class="sd">        m {int} -- Number of workers for aggregation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list -- A list indices of worker indices for aggregation. length &lt;= m</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Number of workers should be positive integer. Got </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Number of workers for aggregation should be &gt;=1 and &lt;= </span><span class="si">{}</span><span class="s2">. Got </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">m</span><span class="p">,</span> <span class="n">n</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Too many Byzantine workers: 2 * </span><span class="si">{}</span><span class="s2"> + 2 &gt;= </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The distance between node </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2"> should be non-negative: Got </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+    
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">_compute_scores</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sorted_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sorted_scores</span><span class="p">))[:</span><span class="n">m</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_compute_euclidean_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">)</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_pairwise_euclidean_distances</span><span class="p">(</span><span class="n">vectors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the pairwise euclidean distance.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        vectors {list} -- A list of vectors.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict -- A dict of dict of distances {i:{j:distance}}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+    <span class="n">vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">]</span>
+    
+    <span class="n">distances</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">_compute_euclidean_distance</span><span class="p">(</span><span class="n">vectors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">distances</span>
+
+
+<div class="viewcode-block" id="Krum"><a class="viewcode-back" href="../../references/aggregators.html#aggregators.krum.Krum">[docs]</a><span class="k">class</span> <span class="nc">Krum</span><span class="p">(</span><span class="n">_BaseAggregator</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+<span class="sd">      A robust aggregator from paper `&quot;Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent&quot; &lt;https://proceedings.neurips.cc/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html&gt;`_</span>
+<span class="sd">      </span>
+<span class="sd">      Given a collection of vectors, ``Krum`` strives to find one of the vector that is closest</span>
+<span class="sd">      to another :math:`K-M-2` ones with respect to squared Euclidean distance, which can be expressed by:</span>
+<span class="sd">    </span>
+<span class="sd">        .. math::</span>
+<span class="sd">           Krum := \{{\Delta}_i | i = \arg\min_{i \in [K]} \sum_{i \rightarrow j}  \lVert {\Delta}_i -</span>
+<span class="sd">                    {\Delta}_j \rVert^2 \}</span>
+<span class="sd">    </span>
+<span class="sd">      where :math:`i \rightarrow j` is the indices of the :math:`K-M-2` nearest neighbours of :math:`{\Delta}_i`</span>
+<span class="sd">      measured by squared ``Euclidean distance``,  :math:`K` is the number of clients in total, and :math:`M`</span>
+<span class="sd">      is the number of Byzantine clients.</span>
+<span class="sd">      </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_clients</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">num_byzantine</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">num_clients</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">num_byzantine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Krum</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clients</span><span class="p">):</span>
+        <span class="n">updates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">get_update</span><span class="p">(),</span> <span class="n">clients</span><span class="p">))</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">_pairwise_euclidean_distances</span><span class="p">(</span><span class="n">updates</span><span class="p">)</span>
+        <span class="n">top_m_indices</span> <span class="o">=</span> <span class="n">_multi_krum</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">updates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_m_indices</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">values</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Krum (m=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Blades Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

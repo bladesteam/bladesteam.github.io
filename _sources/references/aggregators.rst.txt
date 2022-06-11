@@ -1,0 +1,17 @@
+Aggregators
+============
+
+.. automodule:: aggregators.krum
+    :members:
+    :show-inheritance:
+    :member-order: bysource
+
+.. automodule:: aggregators.geomed
+    :members:
+    :show-inheritance:
+    :member-order: bysource
+
+.. automodule:: aggregators.autogm
+    :members:
+    :show-inheritance:
+    :member-order: bysource
