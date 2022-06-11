@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.3. Client &mdash; Blades  documentation</title>
+  <title>4.3. Client &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.4. Aggregators" href="aggregators.html" />
-    <link rel="prev" title="3.2. Server" href="server.html" /> 
+    <link rel="next" title="4.4. Aggregators" href="aggregators.html" />
+    <link rel="prev" title="4.2. Server" href="server.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,13 +39,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../attacks.html">1. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../defenses.html">2. Defenses</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">3. API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server.html">3.2. Server</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregators.html">3.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attacks.html">2. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defenses.html">3. Defenses</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">4. API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">4.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">4.2. Server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregators.html">4.4. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -64,8 +65,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="api_reference.html"><span class="section-number">3. </span>API Reference</a> &raquo;</li>
-      <li><span class="section-number">3.3. </span>Client</li>
+          <li><a href="api_reference.html"><span class="section-number">4. </span>API Reference</a> &raquo;</li>
+      <li><span class="section-number">4.3. </span>Client</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/references/client.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,7 +77,7 @@
            <div itemprop="articleBody">
              
   <section id="module-client">
-<span id="client"></span><h1><span class="section-number">3.3. </span>Client<a class="headerlink" href="#module-client" title="Permalink to this headline"></a></h1>
+<span id="client"></span><h1><span class="section-number">4.3. </span>Client<a class="headerlink" href="#module-client" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="client.BladesClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client.</span></span><span class="sig-name descname"><span class="pre">BladesClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#BladesClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.BladesClient" title="Permalink to this definition"></a></dt>
@@ -168,8 +169,8 @@ and other clients.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="server.html" class="btn btn-neutral float-left" title="3.2. Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="aggregators.html" class="btn btn-neutral float-right" title="3.4. Aggregators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="server.html" class="btn btn-neutral float-left" title="4.2. Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aggregators.html" class="btn btn-neutral float-right" title="4.4. Aggregators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

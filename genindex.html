@@ -36,13 +36,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="attacks.html">1. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="defenses.html">2. Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">3. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/server.html">3.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/client.html">3.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">3.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attacks.html">2. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defenses.html">3. Defenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">4. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">4.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/server.html">4.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/client.html">4.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">4.4. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -77,6 +78,7 @@
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -84,6 +86,7 @@
  | <a href="#O"><strong>O</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
 </div>
@@ -95,6 +98,34 @@
 
       <ul>
         <li><a href="references/aggregators.html#module-aggregators.autogm">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.centeredclipping
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.centeredclipping">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.clippedclustering
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.clippedclustering">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.clustering
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.clustering">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.fltrust
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.fltrust">module</a>
 </li>
       </ul></li>
       <li>
@@ -111,6 +142,27 @@
 
       <ul>
         <li><a href="references/aggregators.html#module-aggregators.krum">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.mean
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.mean">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.median
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.median">module</a>
+</li>
+      </ul></li>
+      <li>
+    aggregators.trimmedmean
+
+      <ul>
+        <li><a href="references/aggregators.html#module-aggregators.trimmedmean">module</a>
 </li>
       </ul></li>
       <li><a href="references/server.html#server.BladesServer.apply_update">apply_update() (server.BladesServer method)</a>
@@ -137,6 +189,8 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="references/aggregators.html#aggregators.centeredclipping.Centeredclipping">Centeredclipping (class in aggregators.centeredclipping)</a>
+</li>
       <li>
     client
 
@@ -144,6 +198,20 @@
         <li><a href="references/client.html#module-client">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="references/aggregators.html#aggregators.clippedclustering.Clippedclustering">Clippedclustering (class in aggregators.clippedclustering)</a>
+</li>
+      <li><a href="references/aggregators.html#aggregators.clustering.Clustering">Clustering (class in aggregators.clustering)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="references/aggregators.html#aggregators.fltrust.Fltrust">Fltrust (class in aggregators.fltrust)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -184,15 +252,33 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="references/aggregators.html#aggregators.mean.Mean">Mean (class in aggregators.mean)</a>
+</li>
+      <li><a href="references/aggregators.html#aggregators.median.Median">Median (class in aggregators.median)</a>
+</li>
       <li>
     module
 
       <ul>
         <li><a href="references/aggregators.html#module-aggregators.autogm">aggregators.autogm</a>
 </li>
+        <li><a href="references/aggregators.html#module-aggregators.centeredclipping">aggregators.centeredclipping</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.clippedclustering">aggregators.clippedclustering</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.clustering">aggregators.clustering</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.fltrust">aggregators.fltrust</a>
+</li>
         <li><a href="references/aggregators.html#module-aggregators.geomed">aggregators.geomed</a>
 </li>
         <li><a href="references/aggregators.html#module-aggregators.krum">aggregators.krum</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.mean">aggregators.mean</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.median">aggregators.median</a>
+</li>
+        <li><a href="references/aggregators.html#module-aggregators.trimmedmean">aggregators.trimmedmean</a>
 </li>
         <li><a href="references/client.html#module-client">client</a>
 </li>
@@ -244,6 +330,14 @@
 </li>
       </ul></li>
       <li><a href="references/simulator.html#simulator.Simulator">Simulator (class in simulator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="references/aggregators.html#aggregators.trimmedmean.Trimmedmean">Trimmedmean (class in aggregators.trimmedmean)</a>
 </li>
   </ul></td>
 </tr></table>

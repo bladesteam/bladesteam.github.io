@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.4. Aggregators &mdash; Blades  documentation</title>
+  <title>4.4. Aggregators &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="3.3. Client" href="client.html" /> 
+    <link rel="prev" title="4.3. Client" href="client.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,13 +39,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../attacks.html">1. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../defenses.html">2. Defenses</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">3. API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server.html">3.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html">3.3. Client</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attacks.html">2. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defenses.html">3. Defenses</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">4. API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">4.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">4.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">4.3. Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.4. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -64,8 +65,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="api_reference.html"><span class="section-number">3. </span>API Reference</a> &raquo;</li>
-      <li><span class="section-number">3.4. </span>Aggregators</li>
+          <li><a href="api_reference.html"><span class="section-number">4. </span>API Reference</a> &raquo;</li>
+      <li><span class="section-number">4.4. </span>Aggregators</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/references/aggregators.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,9 +76,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-aggregators.krum">
-<span id="aggregators"></span><h1><span class="section-number">3.4. </span>Aggregators<a class="headerlink" href="#module-aggregators.krum" title="Permalink to this headline"></a></h1>
+  <section id="module-aggregators.mean">
+<span id="aggregators"></span><h1><span class="section-number">4.4. </span>Aggregators<a class="headerlink" href="#module-aggregators.mean" title="Permalink to this headline"></a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="aggregators.mean.Mean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.mean.</span></span><span class="sig-name descname"><span class="pre">Mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/mean.html#Mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.mean.Mean" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>Computes the <code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">mean</span></code> over the updates from all give clients.</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.krum"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.krum.Krum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.krum.</span></span><span class="sig-name descname"><span class="pre">Krum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/krum.html#Krum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.krum.Krum" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
@@ -121,6 +129,74 @@ Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.autogm.</span></span><span class="sig-name descname"><span class="pre">Autogm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/autogm.html#Autogm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.autogm.Autogm" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9614992">“Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maxiter</strong> – Maximum number of Weiszfeld iterations. Default 100</p></li>
+<li><p><strong>eps</strong> – Smallest allowed value of denominator, to avoid divide by zero. Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
+<li><p><strong>ftol</strong> – If objective value does not improve by at least this <cite>ftol</cite> fraction, terminate the algorithm. Default 1e-10.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-aggregators.median"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.median.Median">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.median.</span></span><span class="sig-name descname"><span class="pre">Median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/median.html#Median"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.median.Median" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a></p>
+<p>It computes the coordinate-wise median of the given set of updates</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.trimmedmean"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.trimmedmean.Trimmedmean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.trimmedmean.</span></span><span class="sig-name descname"><span class="pre">Trimmedmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/trimmedmean.html#Trimmedmean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.trimmedmean.Trimmedmean" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a></p>
+<p>It computes the coordinate-wise trimmed average of the model updates, which can be expressed by:</p>
+<div class="math notranslate nohighlight">
+\[trmean := TrimmedMean( \{ \Delta_k : k \in [K] \} ),\]</div>
+<p>where the <span class="math notranslate nohighlight">\(i\)</span>-th coordinate <span class="math notranslate nohighlight">\(trmean_i = \frac{1}{(1-2\beta)m} \sum_{x \in U_k}x\)</span>, and <span class="math notranslate nohighlight">\(U_k\)</span>
+is a subset obtained by removing the largest and smallest <span class="math notranslate nohighlight">\(\beta\)</span> fraction of its elements.</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.centeredclipping"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.centeredclipping.Centeredclipping">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.centeredclipping.</span></span><span class="sig-name descname"><span class="pre">Centeredclipping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/centeredclipping.html#Centeredclipping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.centeredclipping.Centeredclipping" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="http://proceedings.mlr.press/v139/karimireddy21a.html">Learning from History for Byzantine Robust Optimization</a></p>
+<p>It iteratively clips the updates around the center while updating the center accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tau</strong> – The threshold of clipping. Default 10.0</p></li>
+<li><p><strong>n_iter</strong> – The number of clipping iterations. Default 5</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-aggregators.clustering"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.clustering.Clustering">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clustering.</span></span><span class="sig-name descname"><span class="pre">Clustering</span></span><a class="reference internal" href="../_modules/aggregators/clustering.html#Clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clustering.Clustering" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9054676">“On the byzantine robustness of clustered federated learning”</a></p>
+<p>it separates the client population into two groups based on the cosine similarities</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.clippedclustering"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.clippedclustering.Clippedclustering">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clippedclustering.</span></span><span class="sig-name descname"><span class="pre">Clippedclustering</span></span><a class="reference internal" href="../_modules/aggregators/clippedclustering.html#Clippedclustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clippedclustering.Clippedclustering" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A robust aggregator from paper <a class="reference external" href="https://www.techrxiv.org/articles/preprint/An_Experimental_Study_of_Byzantine-Robust_Aggregation_Schemes_in_Federated_Learning/19560325">“An Experimental Study of Byzantine-Robust sAggregation Schemes in Federated Learning”</a></p>
+<p>it separates the client population into two groups based on the cosine similarities</p>
+</dd></dl>
+
+<span class="target" id="module-aggregators.fltrust"></span><dl class="py class">
+<dt class="sig sig-object py" id="aggregators.fltrust.Fltrust">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.fltrust.</span></span><span class="sig-name descname"><span class="pre">Fltrust</span></span><a class="reference internal" href="../_modules/aggregators/fltrust.html#Fltrust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.fltrust.Fltrust" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Fltrust</span></code> it a trusted-based aggregator from paper <a class="reference external" href="https://arxiv.org/abs/2012.13995">FLTrust: Byzantine-robust Federated Learning via Trust Bootstrapping</a></p>
 </dd></dl>
 
 </section>
@@ -129,7 +205,7 @@ Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="client.html" class="btn btn-neutral float-left" title="3.3. Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="client.html" class="btn btn-neutral float-left" title="4.3. Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

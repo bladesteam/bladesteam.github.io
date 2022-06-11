@@ -36,13 +36,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../attacks.html">1. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../defenses.html">2. Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../references/api_reference.html">3. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../references/simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../references/server.html">3.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../references/client.html">3.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../references/aggregators.html">3.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../attacks.html">2. Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defenses.html">3. Defenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/api_reference.html">4. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../references/simulator.html">4.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/server.html">4.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/client.html">4.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../references/aggregators.html">4.4. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -85,9 +86,11 @@
 
 <div class="viewcode-block" id="Autogm"><a class="viewcode-back" href="../../references/aggregators.html#aggregators.autogm.Autogm">[docs]</a><span class="k">class</span> <span class="nc">Autogm</span><span class="p">(</span><span class="n">_BaseAggregator</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    </span>
-<span class="sd">      A robust aggregator from paper `&quot;Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT&quot; &lt;https://ieeexplore.ieee.org/abstract/document/9614992&gt;`_</span>
-<span class="sd">      </span>
+<span class="sd">        A robust aggregator from paper `&quot;Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT&quot; &lt;https://ieeexplore.ieee.org/abstract/document/9614992&gt;`_</span>
+<span class="sd">        </span>
+<span class="sd">        :param maxiter: Maximum number of Weiszfeld iterations. Default 100</span>
+<span class="sd">        :param eps: Smallest allowed value of denominator, to avoid divide by zero. Equivalently, this is a smoothing parameter. Default 1e-6.</span>
+<span class="sd">        :param ftol: If objective value does not improve by at least this `ftol` fraction, terminate the algorithm. Default 1e-10.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">eps</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="n">ftol</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Autogm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>

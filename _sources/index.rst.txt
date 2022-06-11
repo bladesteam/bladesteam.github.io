@@ -12,6 +12,7 @@ Indices and tables
    :caption: Contents:
    :titlesonly:
 
+   install
    attacks
    defenses
    references/api_reference
