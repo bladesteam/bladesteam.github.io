@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4. Attacks &mdash; Blades  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.5. Aggregators" href="aggregators.html" />
+    <link rel="prev" title="3.3. Client" href="client.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/gallery.html">2. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">3. API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">3.3. Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregators.html">3.5. Aggregators</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="api_reference.html"><span class="section-number">3. </span>API Reference</a> &raquo;</li>
+      <li><span class="section-number">3.4. </span>Attacks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/references/attacks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-attackers.noiseclient">
+<span id="attacks"></span><h1><span class="section-number">3.4. </span>Attacks<a class="headerlink" href="#module-attackers.noiseclient" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="attackers.noiseclient.NoiseClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.noiseclient.</span></span><span class="sig-name descname"><span class="pre">NoiseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
+<p>Uploads random noise as local update. The noise is drawn from a
+<code class="docutils literal notranslate"><span class="pre">normal</span></code> distribution.  The <code class="docutils literal notranslate"><span class="pre">means</span></code> and <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">deviation</span></code> are shared among all drawn elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – the mean for all distributions</p></li>
+<li><p><strong>std</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – the standard deviation for all distributions</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="attackers.noiseclient.NoiseClient.omniscient_callback">
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient.omniscient_callback" title="Permalink to this definition"></a></dt>
+<dd><p>A method that will be registered by the simulator and execute after each communication round.
+It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
+input. Your Byzantine client can overwrite this method to access information from the server
+and other input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<a class="reference internal" href="simulator.html#simulator.Simulator" title="simulator.Simulator"><em>Simulator</em></a>) – The running simulator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-attackers.alieclient"></span><dl class="py class">
+<dt class="sig sig-object py" id="attackers.alieclient.AlieClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.alieclient.</span></span><span class="sig-name descname"><span class="pre">AlieClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_clients</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Total number of input</p></li>
+<li><p><strong>num_byzantine</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of Byzantine input</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="attackers.alieclient.AlieClient.omniscient_callback">
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient.omniscient_callback" title="Permalink to this definition"></a></dt>
+<dd><p>A method that will be registered by the simulator and execute after each communication round.
+It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
+input. Your Byzantine client can overwrite this method to access information from the server
+and other input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<a class="reference internal" href="simulator.html#simulator.Simulator" title="simulator.Simulator"><em>Simulator</em></a>) – The running simulator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-attackers.ipmclient"></span><dl class="py class">
+<dt class="sig sig-object py" id="attackers.ipmclient.IpmClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.ipmclient.</span></span><span class="sig-name descname"><span class="pre">IpmClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_fedavg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="attackers.ipmclient.IpmClient.is_byzantine">
+<span class="sig-name descname"><span class="pre">is_byzantine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient.is_byzantine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient.is_byzantine" title="Permalink to this definition"></a></dt>
+<dd><p>Return a boolean value specifying if the client is Byzantine</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="attackers.ipmclient.IpmClient.omniscient_callback">
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient.omniscient_callback" title="Permalink to this definition"></a></dt>
+<dd><p>A method that will be registered by the simulator and execute after each communication round.
+It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
+input. Your Byzantine client can overwrite this method to access information from the server
+and other input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<a class="reference internal" href="simulator.html#simulator.Simulator" title="simulator.Simulator"><em>Simulator</em></a>) – The running simulator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-attackers.labelflippingclient"></span><dl class="py class">
+<dt class="sig sig-object py" id="attackers.labelflippingclient.LabelflippingMNIST">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.labelflippingclient.</span></span><span class="sig-name descname"><span class="pre">LabelflippingMNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingMNIST"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingMNIST" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.mnist.MNIST</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="attackers.labelflippingclient.LabelflippingCIFAR10">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.labelflippingclient.</span></span><span class="sig-name descname"><span class="pre">LabelflippingCIFAR10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingCIFAR10"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingCIFAR10" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.cifar.CIFAR10</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="attackers.labelflippingclient.LableflippingClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.labelflippingclient.</span></span><span class="sig-name descname"><span class="pre">LableflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">revertible_label_transformer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LableflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LableflippingClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
+</dd></dl>
+
+<span class="target" id="module-attackers.signflippingclient"></span><dl class="py class">
+<dt class="sig sig-object py" id="attackers.signflippingclient.SignflippingClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.signflippingclient.</span></span><span class="sig-name descname"><span class="pre">SignflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="attackers.signflippingclient.SignflippingClient.local_training">
+<span class="sig-name descname"><span class="pre">local_training</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_actor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_batches</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient.local_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient.local_training" title="Permalink to this definition"></a></dt>
+<dd><p>Local optimizaiton of the <code class="docutils literal notranslate"><span class="pre">client</span></code>. Byzantine input can overwrite this method to perform adversarial attack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_rounds</strong> – Number of local optimization steps.</p></li>
+<li><p><strong>use_actor</strong> – Specifyinmodelg the training mode, it should be <code class="docutils literal notranslate"><span class="pre">True</span></code> if you use <code class="docutils literal notranslate"><span class="pre">Trainer</span> <span class="pre">Mode</span></code></p></li>
+<li><p><strong>data_batches</strong> – A list of training batches for local training.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="client.html" class="btn btn-neutral float-left" title="3.3. Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aggregators.html" class="btn btn-neutral float-right" title="3.5. Aggregators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Blades Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

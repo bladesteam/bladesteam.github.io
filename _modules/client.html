@@ -6,6 +6,7 @@
   <title>client &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -14,6 +15,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -37,13 +39,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../attacks.html">2. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../defenses.html">3. Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">4. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../references/simulator.html">4.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/server.html">4.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/client.html">4.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/aggregators.html">4.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/gallery.html">2. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">3. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/client.html">3.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/attacks.html">3.4. Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/aggregators.html">3.5. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -85,15 +90,13 @@
 
 
 <div class="viewcode-block" id="BladesClient"><a class="viewcode-back" href="../references/client.html#client.BladesClient">[docs]</a><span class="k">class</span> <span class="nc">BladesClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for all clients.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for all input.</span>
 <span class="sd">    </span>
 <span class="sd">        .. note::</span>
-<span class="sd">            Your honest clients should also subclass this class.</span>
+<span class="sd">            Your honest input should also subclass this class.</span>
 <span class="sd">    </span>
-<span class="sd">        :param client_id: a unique id of the client.</span>
-<span class="sd">        :type client_id: str, optional.</span>
+<span class="sd">        :param id: a unique id of the client.</span>
 <span class="sd">        :param device:  if specified, all parameters will be copied to that device</span>
-<span class="sd">        :type device: torch.device, or str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">_is_byzantine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -101,10 +104,10 @@
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">client_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">device</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">client_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="p">{}</span>
@@ -112,23 +115,42 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">json_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">set_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+<div class="viewcode-block" id="BladesClient.set_id"><a class="viewcode-back" href="../references/client.html#client.BladesClient.set_id">[docs]</a>    <span class="k">def</span> <span class="nf">set_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the unique id of the client.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if not isinstance(id,str):</span>
+        <span class="c1">#     raise TypeError(f&#39;Client _id must be str, but got {type(id)}&#39;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span></div>
     
-    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+<div class="viewcode-block" id="BladesClient.id"><a class="viewcode-back" href="../references/client.html#client.BladesClient.id">[docs]</a>    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the unique id of the client.</span>
+<span class="sd">        </span>
+<span class="sd">        :Example:</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; from blades.client import BladesClient</span>
+<span class="sd">        &gt;&gt;&gt; client = BladesClient(id=&#39;1&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; client.id()</span>
+<span class="sd">        &#39;1&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span></div>
     
     <span class="k">def</span> <span class="nf">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">get_is_byzantine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_byzantine</span>
+<div class="viewcode-block" id="BladesClient.is_byzantine"><a class="viewcode-back" href="../references/client.html#client.BladesClient.is_byzantine">[docs]</a>    <span class="k">def</span> <span class="nf">is_byzantine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a boolean value specifying if the client is Byzantine&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_byzantine</span></div>
     
-    <span class="k">def</span> <span class="nf">get_is_trusted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_trusted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_trusted</span>
     
-    <span class="k">def</span> <span class="nf">set_is_trusted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trusted</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_is_trusted</span> <span class="o">=</span> <span class="n">trusted</span>
+<div class="viewcode-block" id="BladesClient.trust"><a class="viewcode-back" href="../references/client.html#client.BladesClient.trust">[docs]</a>    <span class="k">def</span> <span class="nf">trust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trusted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trusts the client as an honest participant. This property is useful</span>
+<span class="sd">        for trust-based algorithms.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_trusted</span> <span class="o">=</span> <span class="n">trusted</span></div>
     
 <div class="viewcode-block" id="BladesClient.set_model"><a class="viewcode-back" href="../references/client.html#client.BladesClient.set_model">[docs]</a>    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">),</span> <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&#39;&#39;&#39; Deep copy the given model to the client.</span>
@@ -137,11 +159,8 @@
 <span class="sd">                To improve the scalability, this API may be removed in the future,</span>
 <span class="sd">                </span>
 <span class="sd">            :param model: a Torch model for current client.</span>
-<span class="sd">            :type model: torch.nn.Module</span>
 <span class="sd">            :param opt: client optimizer</span>
-<span class="sd">            :type opt: torch.optim.Optimizer</span>
 <span class="sd">            :param lr:  local learning rate</span>
-<span class="sd">            :type lr: float</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">opt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span></div>
@@ -198,14 +217,11 @@
         <span class="k">return</span> <span class="n">r</span>
     
 <div class="viewcode-block" id="BladesClient.local_training"><a class="viewcode-back" href="../references/client.html#client.BladesClient.local_training">[docs]</a>    <span class="k">def</span> <span class="nf">local_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">use_actor</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">data_batches</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&#39;&#39;&#39; Local optimizaiton of the ``client``. Byzantine clients can overwrite this method to perform adversarial attack.</span>
+        <span class="sa">r</span><span class="sd">&#39;&#39;&#39; Local optimizaiton of the ``client``. Byzantine input can overwrite this method to perform adversarial attack.</span>
 <span class="sd">        </span>
 <span class="sd">            :param num_rounds: Number of local optimization steps.</span>
-<span class="sd">            :type num_rounds: int</span>
-<span class="sd">            :param use_actor: Specifying the training mode, it should be ``True`` if you use ``Trainer Mode``</span>
-<span class="sd">            :type use_actor: bool</span>
+<span class="sd">            :param use_actor: Specifyinmodelg the training mode, it should be ``True`` if you use ``Trainer Mode``</span>
 <span class="sd">            :param data_batches: A list of training batches for local training.</span>
-<span class="sd">            :type data_batches: list</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_save_para</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">use_actor</span><span class="p">:</span>
@@ -227,12 +243,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save_update</span><span class="p">(</span><span class="n">update</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="BladesClient.get_update"><a class="viewcode-back" href="../references/client.html#client.BladesClient.get_update">[docs]</a>    <span class="k">def</span> <span class="nf">get_update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&#39;&#39;&#39; Return the saved update of local optimization, represented as a vector.</span>
+        <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Returns the saved update of local optimization, represented as a vector.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_saved_update</span><span class="p">())</span></div>
     
-    <span class="k">def</span> <span class="nf">save_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;saved_update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<div class="viewcode-block" id="BladesClient.save_update"><a class="viewcode-back" href="../references/client.html#client.BladesClient.save_update">[docs]</a>    <span class="k">def</span> <span class="nf">save_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the update of the client,.</span>
+<span class="sd">        </span>
+<span class="sd">        :param update: a vector of local update</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;saved_update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_get_saved_update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;saved_update&#39;</span><span class="p">]</span>
@@ -261,10 +281,10 @@
 
 
 <div class="viewcode-block" id="ByzantineClient"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient">[docs]</a><span class="k">class</span> <span class="nc">ByzantineClient</span><span class="p">(</span><span class="n">BladesClient</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for Byzantine clients.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for Byzantine input.</span>
 <span class="sd">    </span>
 <span class="sd">            .. note::</span>
-<span class="sd">                Your Byzantine clients should also subclass this class, and overwrite ``local_training`` and</span>
+<span class="sd">                Your Byzantine input should also subclass this class, and overwrite ``local_training`` and</span>
 <span class="sd">                ``omniscient_callback`` to customize your attack.</span>
 <span class="sd">                </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -276,8 +296,8 @@
 <div class="viewcode-block" id="ByzantineClient.omniscient_callback"><a class="viewcode-back" href="../references/client.html#client.ByzantineClient.omniscient_callback">[docs]</a>    <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A method that will be registered by the simulator and execute after each communication round.</span>
 <span class="sd">            It allows a Byzantine client has full knowledge of the training system, e.g., updates from all</span>
-<span class="sd">            clients. Your Byzantine client can overwrite this method to access information from the server</span>
-<span class="sd">            and other clients.</span>
+<span class="sd">            input. Your Byzantine client can overwrite this method to access information from the server</span>
+<span class="sd">            and other input.</span>
 <span class="sd">            </span>
 <span class="sd">            :param simulator: The running simulator.</span>
 <span class="sd">            :type simulator: Simulator</span>

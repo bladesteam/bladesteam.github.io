@@ -6,6 +6,7 @@
   <title>simulator &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -14,6 +15,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -37,13 +39,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../attacks.html">2. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../defenses.html">3. Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">4. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../references/simulator.html">4.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/server.html">4.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/client.html">4.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../references/aggregators.html">4.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/gallery.html">2. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/api_reference.html">3. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/client.html">3.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/attacks.html">3.4. Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/aggregators.html">3.5. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +117,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)):</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_para</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">train_epoch_start</span><span class="p">()</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_train_data</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">local_round</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_train_data</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">(),</span> <span class="n">local_round</span><span class="p">)</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_training</span><span class="p">(</span><span class="n">local_round</span><span class="p">,</span> <span class="n">use_actor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">data_batches</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
             <span class="n">update</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_update</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">update</span>
@@ -121,7 +126,7 @@
         <span class="n">update</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)):</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_para</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_all_test_data</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_all_test_data</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
                 <span class="n">round_number</span><span class="o">=</span><span class="n">round_number</span><span class="p">,</span>
                 <span class="n">test_set</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -136,10 +141,10 @@
 <div class="viewcode-block" id="Simulator"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator">[docs]</a><span class="k">class</span> <span class="nc">Simulator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synchronous and parallel training with specified aggregators.</span>
 <span class="sd">    </span>
-<span class="sd">    :param dataset: FLDataset that consists local data of all clients</span>
+<span class="sd">    :param dataset: FLDataset that consists local data of all input</span>
 <span class="sd">    :param aggregator: String (name of build-in aggregation scheme) or</span>
 <span class="sd">                       a callable which takes a list of tensors and returns an aggregated tensor.</span>
-<span class="sd">    :param num_byzantine: Number of Byzantine clients under build-in attack.</span>
+<span class="sd">    :param num_byzantine: Number of Byzantine input under build-in attack.</span>
 <span class="sd">                          It should be ``0`` if you have custom attack strategy.</span>
 <span class="sd">    :type num_byzantine: int, optional</span>
 <span class="sd">    :param attack: ``None`` by default. One of the build-in attacks, i.e., ``None``, ``noise``, ``labelflipping``,</span>
@@ -218,29 +223,29 @@
         <span class="n">users</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_clients</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">users</span><span class="p">):</span>
+            <span class="c1"># u = str(u)</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_byzantine</span><span class="p">:</span>
                 <span class="n">module_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.attackers.</span><span class="si">%s</span><span class="s1">client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="p">)</span>
                 <span class="n">attack_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">attack_param</span><span class="p">)</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">attack_param</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">BladesClient</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">BladesClient</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">client</span>
     
 <div class="viewcode-block" id="Simulator.get_clients"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator.get_clients">[docs]</a>    <span class="k">def</span> <span class="nf">get_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return all clients.</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return all input.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span></div>
     
 <div class="viewcode-block" id="Simulator.set_trusted_clients"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator.set_trusted_clients">[docs]</a>    <span class="k">def</span> <span class="nf">set_trusted_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set a list of clients as trusted. This is usable for trusted-based algorithms that assume</span>
-<span class="sd">           some clients are known as not Byzantine.</span>
+        <span class="sd">&quot;&quot;&quot;Set a list of input as trusted. This is usable for trusted-based algorithms that assume some input are known as not Byzantine.</span>
 <span class="sd">    </span>
 <span class="sd">        :param ids: a list of client ids that are trusted</span>
 <span class="sd">        :type ids: list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">set_is_trusted</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">trust</span><span class="p">()</span></div>
             
     
     <span class="k">def</span> <span class="nf">cache_random_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -264,7 +269,7 @@
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">)</span>
         <span class="n">client_li</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)):</span>
-            <span class="nb">id</span> <span class="o">=</span> <span class="n">client_li</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="n">client_li</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">_id</span><span class="p">()</span>
             <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_omniscient_callback</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
@@ -284,10 +289,10 @@
         <span class="k">return</span> <span class="n">results</span>
     
     <span class="k">def</span> <span class="nf">train_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">global_round</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">,</span> <span class="n">clients</span><span class="p">):</span>
-        <span class="c1"># TODO: randomly select a subset of clients for local training</span>
+        <span class="c1"># TODO: randomly select a subset of input for local training</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train global round </span><span class="si">{</span><span class="n">global_round</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
-        <span class="c1"># Allocate clients to actors:</span>
+        <span class="c1"># Allocate input to actors:</span>
         <span class="n">global_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
         <span class="n">client_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_actors</span><span class="p">))</span>
         <span class="n">all_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor_pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
@@ -328,7 +333,7 @@
             <span class="k">return</span> <span class="n">update</span>
         
         <span class="k">def</span> <span class="nf">train_function</span><span class="p">(</span><span class="n">clients</span><span class="p">,</span> <span class="n">trainer</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_train_data</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">)</span> <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_train_data</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">num_rounds</span><span class="p">)</span> <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">trainer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">local_training</span><span class="p">,</span>
                                <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;client&#39;</span><span class="p">:</span> <span class="n">clients</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">&#39;use_actor&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_actor</span><span class="p">,</span>
                                        <span class="s1">&#39;local_round&#39;</span><span class="p">:</span> <span class="n">num_rounds</span><span class="p">})</span>
@@ -394,7 +399,7 @@
 <span class="sd">        :param client_optimizer: Pytorch optimizer for client-side optimization.</span>
 <span class="sd">                                 Currently, the ``str`` type only supports ``SGD``</span>
 <span class="sd">        :type client_optimizer: torch.optim.Optimizer or str</span>
-<span class="sd">        :param loss: A Pytorch Loss function. See https://pytorch.org/docs/stable/nn.html#loss-functions.</span>
+<span class="sd">        :param loss: A Pytorch Loss function. See `Python documentation &lt;https://pytorch.org/docs/stable/nn.html#loss-functions&gt;`_.</span>
 <span class="sd">                     Currently, the `str` type only supports ``crossentropy``</span>
 <span class="sd">        :type loss: str</span>
 <span class="sd">        :param global_rounds: Number of communication rounds in total.</span>

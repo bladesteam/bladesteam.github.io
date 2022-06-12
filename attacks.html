@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Attacks &mdash; Blades  documentation</title>
+  <title>Attacks &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,11 +16,10 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Defenses" href="defenses.html" />
-    <link rel="prev" title="1. Installation" href="install.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,15 +38,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="defenses.html">3. Defenses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">4. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">4.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/server.html">4.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/client.html">4.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">4.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/gallery.html">2. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">3. API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/server.html">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/client.html">3.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/attacks.html">3.4. Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">3.5. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -65,7 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">2. </span>Attacks</li>
+      <li>Attacks</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/attacks.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,15 +78,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>(sec:attacks)=</p>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>(sec:attacks)=</p>
 <section id="attacks">
-<h1><span class="section-number">2. </span>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline"></a></h1>
+<h1>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline"></a></h1>
 <p>(sec:buildinattacks)=</p>
 <section id="build-in-attacks">
-<h2><span class="section-number">2.1. </span>Build-in Attacks<a class="headerlink" href="#build-in-attacks" title="Permalink to this headline"></a></h2>
+<h2>Build-in Attacks<a class="headerlink" href="#build-in-attacks" title="Permalink to this headline"></a></h2>
 <p>The following attack strategies are currently implemented in <code class="docutils literal notranslate"><span class="pre">Blades</span></code>:</p>
 <section id="untargeted-attack">
-<h3><span class="section-number">2.1.1. </span>Untargeted Attack<a class="headerlink" href="#untargeted-attack" title="Permalink to this headline"></a></h3>
+<h3>Untargeted Attack<a class="headerlink" href="#untargeted-attack" title="Permalink to this headline"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 33%" />
@@ -122,7 +149,7 @@
 </section>
 </section>
 <section id="customizing-attacks">
-<h2><span class="section-number">2.2. </span>Customizing Attacks<a class="headerlink" href="#customizing-attacks" title="Permalink to this headline"></a></h2>
+<h2>Customizing Attacks<a class="headerlink" href="#customizing-attacks" title="Permalink to this headline"></a></h2>
 <p>(sec:customattacks)=
 The following example shows how to customize attack strategy.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
@@ -135,24 +162,24 @@ The following example shows how to customize attack strategy.</p>
 
 
 <span class="k">class</span> <span class="nc">MaliciousClient</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">):</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
-    <span class="n">updates</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">simulator</span><span class="o">.</span><span class="n">_clients</span><span class="p">:</span>
-      <span class="n">is_byzantine</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get_is_byzantine</span><span class="p">()</span>
-      <span class="k">if</span> <span class="ow">not</span> <span class="n">is_byzantine</span><span class="p">:</span>
-        <span class="n">updates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_update</span><span class="p">())</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">save_update</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
+        <span class="n">updates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">simulator</span><span class="o">.</span><span class="n">_clients</span><span class="p">:</span>
+            <span class="n">is_byzantine</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">is_byzantine</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_byzantine</span><span class="p">:</span>
+                <span class="n">updates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_update</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_update</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
 
 
 <span class="c1"># configuration parameters</span>
 <span class="n">conf_params</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
-  <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># defense: robust aggregation</span>
-  <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
-  <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
+    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">,</span>
+    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># defense: robust aggregation</span>
+    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
 <span class="p">}</span>
 
 <span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -163,13 +190,13 @@ The following example shows how to customize attack strategy.</p>
 
 <span class="c1"># runtime parameters</span>
 <span class="n">run_params</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">CCTNet</span><span class="p">(),</span>  <span class="c1"># global model</span>
-  <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># server optimizer</span>
-  <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
-  <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
-  <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
-  <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
-  <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">CCTNet</span><span class="p">(),</span>  <span class="c1"># global model</span>
+    <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># server optimizer</span>
+    <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
+    <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
+    <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
+    <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
 <span class="p">}</span>
 <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
 </pre></div>
@@ -180,10 +207,7 @@ The following example shows how to customize attack strategy.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="install.html" class="btn btn-neutral float-left" title="1. Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="defenses.html" class="btn btn-neutral float-right" title="3. Defenses" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

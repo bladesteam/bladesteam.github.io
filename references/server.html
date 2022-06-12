@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.2. Server &mdash; Blades  documentation</title>
+  <title>3.2. Server &mdash; Blades  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,11 +16,12 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. Client" href="client.html" />
-    <link rel="prev" title="4.1. Simulator" href="simulator.html" /> 
+    <link rel="next" title="3.3. Client" href="client.html" />
+    <link rel="prev" title="3.1. Simulator" href="simulator.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,13 +42,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">1. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../attacks.html">2. Attacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../defenses.html">3. Defenses</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">4. API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simulator.html">4.1. Simulator</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html">4.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregators.html">4.4. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/gallery.html">2. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">3. API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">3.1. Simulator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">3.3. Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attacks.html">3.4. Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregators.html">3.5. Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -65,8 +70,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="api_reference.html"><span class="section-number">4. </span>API Reference</a> &raquo;</li>
-      <li><span class="section-number">4.2. </span>Server</li>
+          <li><a href="api_reference.html"><span class="section-number">3. </span>API Reference</a> &raquo;</li>
+      <li><span class="section-number">3.2. </span>Server</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/references/server.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,11 +81,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-server">
-<span id="server"></span><h1><span class="section-number">4.2. </span>Server<a class="headerlink" href="#module-server" title="Permalink to this headline"></a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-server">
+<span id="server"></span><h1><span class="section-number">3.2. </span>Server<a class="headerlink" href="#module-server" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="server.BladesServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.</span></span><span class="sig-name descname"><span class="pre">BladesServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.optim.optimizer.Optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">torch.Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.</span></span><span class="sig-name descname"><span class="pre">BladesServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregator</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Simulating the server of the federated learning system.</p>
 <dl class="field-list simple">
@@ -99,13 +128,18 @@ an aggregated tensor.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="server.BladesServer.get_opt">
-<span class="sig-name descname"><span class="pre">get_opt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.optim.optimizer.Optimizer</span></span></span><a class="reference internal" href="../_modules/server.html#BladesServer.get_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.get_opt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_opt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer.get_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.get_opt" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the global optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="server.BladesServer.zero_grad">
-<span class="sig-name descname"><span class="pre">zero_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_to_none</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer.zero_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.zero_grad" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">zero_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_to_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer.zero_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.zero_grad" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the gradients of all optimized <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code> s to zero.
 It should be called before assigning pseudo-gradient</p>
 <dl class="field-list simple">
@@ -117,13 +151,18 @@ It should be called before assigning pseudo-gradient</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="server.BladesServer.get_model">
-<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.nn.modules.module.Module</span></span></span><a class="reference internal" href="../_modules/server.html#BladesServer.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.get_model" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.get_model" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the current global model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="server.BladesServer.apply_update">
-<span class="sig-name descname"><span class="pre">apply_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/server.html#BladesServer.apply_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.apply_update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">apply_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/server.html#BladesServer.apply_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#server.BladesServer.apply_update" title="Permalink to this definition"></a></dt>
 <dd><p>Apply a step of global optimization.</p>
 <blockquote>
 <div><div class="admonition note">
@@ -136,6 +175,9 @@ layer by layer.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>update</strong> (<em>torch.Tensor</em>) – The aggregated update.</p>
 </dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -147,8 +189,8 @@ layer by layer.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="simulator.html" class="btn btn-neutral float-left" title="4.1. Simulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="client.html" class="btn btn-neutral float-right" title="4.3. Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="simulator.html" class="btn btn-neutral float-left" title="3.1. Simulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="client.html" class="btn btn-neutral float-right" title="3.3. Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
