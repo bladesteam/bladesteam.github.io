@@ -96,10 +96,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_noise_std</span> <span class="o">=</span> <span class="n">std</span>
     
 <div class="viewcode-block" id="NoiseClient.omniscient_callback"><a class="viewcode-back" href="../../references/attacks.html#attackers.noiseclient.NoiseClient.omniscient_callback">[docs]</a>    <span class="k">def</span> <span class="nf">omniscient_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;saved_update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_noise_mean</span><span class="p">,</span>
-                                                  <span class="bp">self</span><span class="o">.</span><span class="n">_noise_std</span><span class="p">,</span>
-                                                  <span class="n">size</span><span class="o">=</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_update</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
-                                                  <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s1">&#39;saved_update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_noise_mean</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">_noise_std</span><span class="p">,</span>
+                                                   <span class="n">size</span><span class="o">=</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_update</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+                                                   <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

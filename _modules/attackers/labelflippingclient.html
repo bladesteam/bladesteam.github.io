@@ -125,8 +125,8 @@
     
     <span class="k">def</span> <span class="nf">train_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">train_epoch_start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_iterator</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_iterator</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span>
         <span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">_wrap_iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
