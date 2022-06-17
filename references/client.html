@@ -197,6 +197,37 @@ for trust-based algorithms.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="client.BladesClient.on_train_round_start">
+<span class="sig-name descname"><span class="pre">on_train_round_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#BladesClient.on_train_round_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.BladesClient.on_train_round_start" title="Permalink to this definition"></a></dt>
+<dd><p>Called at the beginning of each local training round in <cite>local_training</cite> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>logs</strong> – Dict. Aggregated metric results up until this batch.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="client.BladesClient.on_train_batch_begin">
+<span class="sig-name descname"><span class="pre">on_train_batch_begin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#BladesClient.on_train_batch_begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.BladesClient.on_train_batch_begin" title="Permalink to this definition"></a></dt>
+<dd><p>Called at the beginning of a training batch in <cite>local_training</cite> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – input of the batch data.</p></li>
+<li><p><strong>target</strong> – target of the batch data.</p></li>
+<li><p><strong>logs</strong> – Dict. Aggregated metric results up until this batch.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="client.BladesClient.local_training">
 <span class="sig-name descname"><span class="pre">local_training</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_actor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_batches</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/client.html#BladesClient.local_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#client.BladesClient.local_training" title="Permalink to this definition"></a></dt>
 <dd><p>Local optimizaiton of the <code class="docutils literal notranslate"><span class="pre">client</span></code>. Byzantine input can overwrite this method to perform adversarial attack.</p>

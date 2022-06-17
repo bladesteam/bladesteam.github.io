@@ -91,63 +91,19 @@
 <span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">ByzantineClient</span>
 
 
-<div class="viewcode-block" id="LabelflippingMNIST"><a class="viewcode-back" href="../../references/attacks.html#attackers.labelflippingclient.LabelflippingMNIST">[docs]</a><span class="k">class</span> <span class="nc">LabelflippingMNIST</span><span class="p">(</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="n">img</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LabelflippingMNIST</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="mi">9</span> <span class="o">-</span> <span class="n">target</span>
-        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">target</span>
-    
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">raw_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;mnist&quot;</span><span class="p">,</span> <span class="s2">&quot;raw&quot;</span><span class="p">)</span>
-    
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">processed_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;mnist&quot;</span><span class="p">,</span> <span class="s2">&quot;processed&quot;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="LabelflippingCIFAR10"><a class="viewcode-back" href="../../references/attacks.html#attackers.labelflippingclient.LabelflippingCIFAR10">[docs]</a><span class="k">class</span> <span class="nc">LabelflippingCIFAR10</span><span class="p">(</span><span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="n">img</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LabelflippingCIFAR10</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="mi">9</span> <span class="o">-</span> <span class="n">target</span>
-        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">target</span></div>
-
-
-<div class="viewcode-block" id="LableflippingClient"><a class="viewcode-back" href="../../references/attacks.html#attackers.labelflippingclient.LableflippingClient">[docs]</a><span class="k">class</span> <span class="nc">LableflippingClient</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revertible_label_transformer</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LabelflippingClient"><a class="viewcode-back" href="../../references/attacks.html#attackers.labelflippingclient.LabelflippingClient">[docs]</a><span class="k">class</span> <span class="nc">LabelflippingClient</span><span class="p">(</span><span class="n">ByzantineClient</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            revertible_label_transformer (callable):</span>
 <span class="sd">                E.g. lambda label: 9 - label</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">revertible_label_transformer</span> <span class="o">=</span> <span class="n">revertible_label_transformer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="n">num_classes</span>
     
-    <span class="k">def</span> <span class="nf">train_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">train_epoch_start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_iterator</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">[</span><span class="s2">&quot;train_loader_iterator&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__next__</span>
-        <span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">_wrap_iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
-            <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">func</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">revertible_label_transformer</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">wrapper</span>
-    
-    <span class="k">def</span> <span class="nf">_wrap_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">revertible_label_transformer</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
-        
-        <span class="k">return</span> <span class="n">wrapper</span>
-    
-    <span class="k">def</span> <span class="nf">add_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">,</span> <span class="s2">&quot;length&quot;</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Metrics (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) already added.&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_metric</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
-    
+    <span class="k">def</span> <span class="nf">on_train_batch_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">target</span>
+       
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;LableFlippingWorker&quot;</span></div>
 </pre></div>
