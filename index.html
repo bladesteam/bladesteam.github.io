@@ -1,126 +1,265 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Blades documentation &mdash; Blades  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Blades documentation &#8212; Blades  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Installation" href="install.html" /> 
-</head>
+    <link rel="next" title="Installation" href="install.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> Blades
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/gallery.html">2. Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">3. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/server.html">3.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/client.html">3.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/attacks.html">3.4. Attacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">3.5. Aggregators</a></li>
-</ul>
-</li>
-</ul>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-        </div>
-      </div>
-    </nav>
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="#">
+<p class="title">Blades</p>
+</a>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Blades</a>
-      </nav>
+    
+  </div>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Welcome to Blades documentation</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
   
-<style>
-/* CSS overrides for sphinx_rtd_theme */
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="install.html">
+  Installation
+ </a>
+</li>
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="auto_examples/index.html">
+  Examples
+ </a>
+</li>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="references/api_reference.html">
+  API Reference
+ </a>
+</li>
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+    
+</ul>
+      </div>
+      
+    </div>
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="welcome-to-blades-documentation">
-<h1>Welcome to Blades documentation<a class="headerlink" href="#welcome-to-blades-documentation" title="Permalink to this headline"></a></h1>
-<section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h2>
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/bladesteam/blades" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indices-and-tables">
+   Indices and tables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Documentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#illustration-of-blades">
+   Illustration of Blades
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-in-implementations">
+   Build-in Implementations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attacks">
+     Attacks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#untargeted-attack">
+       Untargeted Attack
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defenses">
+     Defenses
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#robust-aggregation">
+       Robust Aggregation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trust-based-strategies">
+       Trust-based Strategies
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-deployment">
+   Cluster Deployment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citation">
+   Citation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="welcome-to-blades-documentation">
+<h1>Welcome to Blades documentation<a class="headerlink" href="#welcome-to-blades-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/gallery.html">2. Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/notebooks/aggregators.html">2.1. Comparing Build-in Aggregation Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a><ul>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">3. API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">3.1. Simulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/server.html">3.2. Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/client.html">3.3. Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/attacks.html">3.4. Attacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">3.5. Aggregators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="references/simulator.html">Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/server.html">Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/attacks.html">Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="references/aggregators.html">Aggregators</a></li>
 </ul>
 </li>
 </ul>
@@ -149,7 +288,7 @@
     <img src="https://img.shields.io/github/license/bladesteam/blades?style=plastic" alt="license">
     <img src="https://img.shields.io/badge/Contributions-Welcome-278ea5" alt="Contrib"/>
   </a>
-</p><p><strong>Blades</strong> is designed to simulate federated learning attacks and defense with high performance and fast evaluation
+</p><p><strong>Blades</strong> is designed to simulate attacks and defenses in federated learning with high performance and fast evaluation
 of existing strategies and new techniques. Key features of <strong>Blades</strong> include:</p>
 <blockquote>
 <div><ul class="simple">
@@ -160,42 +299,55 @@ of existing strategies and new techniques. Key features of <strong>Blades</stron
 </div></blockquote>
 <p>NOTE: More features are under development and the APIs are subject to change.
 If you are interested in this project, don’t hesitate to contact me or make a PR directly.</p>
-</section>
-<section id="id1">
-<h2><a class="reference external" href="https://bladesteam.github.io/">Documentation</a><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://bladesteam.github.io/">Documentation</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">blades</span>
 </pre></div>
 </div>
-</section>
-<section id="get-started">
-<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
 <p>How fast can we simulate attack and defense in federated learning?
 Take <a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/attackers/alieclient.py">ALIE Attack</a> and
 <a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/aggregators/trimmedmean.py">Trimmedmean Aggregation</a> as an <a class="reference external" href="https://github.com/bladesteam/blades/blob/master/src/blades/examples/mini_example.py">example</a>.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A mini example</span>
+<span class="sd">===========================</span>
 
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">MNIST</span>
 <span class="kn">from</span> <span class="nn">blades.models.mnist</span> <span class="kn">import</span> <span class="n">DNN</span>
 <span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
+
+
+
+<span class="c1"># os.environ[&quot;CUDA_DEVICE_ORDER&quot;]=&quot;PCI_BUS_ID&quot;</span>
+<span class="c1"># os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;]=&quot;2,3&quot;</span>
+
 
 <span class="n">mnist</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">data_root</span><span class="o">=</span><span class="s2">&quot;./data&quot;</span><span class="p">,</span> <span class="n">train_bs</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">num_clients</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># built-in federated MNIST dataset</span>
 
 <span class="c1"># configuration parameters</span>
 <span class="n">conf_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">mnist</span><span class="p">,</span>
-    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;trimmedmean&quot;</span><span class="p">,</span>  <span class="c1"># aggregation</span>
-    <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># number of Byzantine input</span>
+    <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># aggregation</span>
+    <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># number of Byzantine input</span>
     <span class="s2">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;alie&quot;</span><span class="p">,</span>  <span class="c1"># attack strategy</span>
-    <span class="s2">&quot;attack_param&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_clients&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
-                    <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;attack_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_clients&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
+                     <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;use_cuda&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;gpu_per_actor&quot;</span><span class="p">:</span> <span class="mf">0.19</span><span class="p">,</span>
     <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
 <span class="p">}</span>
 
-<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">num_gpus</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">local_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">simulator</span> <span class="o">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="o">**</span><span class="n">conf_params</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">DNN</span><span class="p">()</span>
@@ -206,28 +358,28 @@ Take <a class="reference external" href="https://github.com/bladesteam/blades/bl
     <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
     <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
     <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
-    <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
-    <span class="s2">&quot;server_lr&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
+    <span class="s2">&quot;server_lr&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="s2">&quot;client_lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
 <span class="p">}</span>
 <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="illustration-of-blades">
-<h2>Illustration of Blades<a class="headerlink" href="#illustration-of-blades" title="Permalink to this headline"></a></h2>
-<figure class="align-default">
+</div>
+<div class="section" id="illustration-of-blades">
+<h2>Illustration of Blades<a class="headerlink" href="#illustration-of-blades" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="https://i.postimg.cc/Xq73SgxS/blade-architecture.png"><img alt="Blades architecture" src="https://i.postimg.cc/Xq73SgxS/blade-architecture.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="build-in-implementations">
-<h2>Build-in Implementations<a class="headerlink" href="#build-in-implementations" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="section" id="build-in-implementations">
+<h2>Build-in Implementations<a class="headerlink" href="#build-in-implementations" title="Permalink to this headline">¶</a></h2>
 <p>In detail, the following strategies are currently implemented:</p>
-<section id="attacks">
-<h3>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline"></a></h3>
-<section id="untargeted-attack">
-<h4>Untargeted Attack<a class="headerlink" href="#untargeted-attack" title="Permalink to this headline"></a></h4>
-<table class="docutils align-default">
+<div class="section" id="attacks">
+<h3>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="untargeted-attack">
+<h4>Untargeted Attack<a class="headerlink" href="#untargeted-attack" title="Permalink to this headline">¶</a></h4>
+<table class="table">
 <colgroup>
 <col style="width: 6%" />
 <col style="width: 61%" />
@@ -262,13 +414,13 @@ Take <a class="reference external" href="https://github.com/bladesteam/blades/bl
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="defenses">
-<h3>Defenses<a class="headerlink" href="#defenses" title="Permalink to this headline"></a></h3>
-<section id="robust-aggregation">
-<h4>Robust Aggregation<a class="headerlink" href="#robust-aggregation" title="Permalink to this headline"></a></h4>
-<table class="docutils align-default">
+</div>
+</div>
+<div class="section" id="defenses">
+<h3>Defenses<a class="headerlink" href="#defenses" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="robust-aggregation">
+<h4>Robust Aggregation<a class="headerlink" href="#robust-aggregation" title="Permalink to this headline">¶</a></h4>
+<table class="table">
 <colgroup>
 <col style="width: 6%" />
 <col style="width: 66%" />
@@ -315,10 +467,10 @@ Take <a class="reference external" href="https://github.com/bladesteam/blades/bl
 </tr>
 </tbody>
 </table>
-</section>
-<section id="trust-based-strategies">
-<h4>Trust-based Strategies<a class="headerlink" href="#trust-based-strategies" title="Permalink to this headline"></a></h4>
-<table class="docutils align-default">
+</div>
+<div class="section" id="trust-based-strategies">
+<h4>Trust-based Strategies<a class="headerlink" href="#trust-based-strategies" title="Permalink to this headline">¶</a></h4>
+<table class="table">
 <colgroup>
 <col style="width: 8%" />
 <col style="width: 53%" />
@@ -337,15 +489,15 @@ Take <a class="reference external" href="https://github.com/bladesteam/blades/bl
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-</section>
-<section id="cluster-deployment">
-<h2>Cluster Deployment<a class="headerlink" href="#cluster-deployment" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+</div>
+<div class="section" id="cluster-deployment">
+<h2>Cluster Deployment<a class="headerlink" href="#cluster-deployment" title="Permalink to this headline">¶</a></h2>
 <p>To run <strong>blades</strong> on a cluster, you only need to deploy <code class="docutils literal notranslate"><span class="pre">Ray</span> <span class="pre">cluster</span></code> according to the <a class="reference external" href="https://docs.ray.io/en/latest/cluster/user-guide.html">official guide</a>.</p>
-</section>
-<section id="citation">
-<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
 <p>Please cite our <a class="reference external" href="https://arxiv.org/abs/2206.05359">paper</a> (and the respective papers of the methods used) if you use this code in your own work:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">li2022blades</span><span class="p">,</span>
   <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Blades</span><span class="p">:</span> <span class="n">A</span> <span class="n">Simulator</span> <span class="k">for</span> <span class="n">Attacks</span> <span class="ow">and</span> <span class="n">Defenses</span> <span class="ow">in</span> <span class="n">Federated</span> <span class="n">Learning</span><span class="p">},</span>
@@ -355,43 +507,49 @@ Take <a class="reference external" href="https://github.com/bladesteam/blades/bl
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Part of the code is from <em>Karimireddy</em>’s <a class="reference external" href="https://github.com/epfml/byzantine-robust-optimizer">repository</a>. <em>Paper:</em> <a class="reference external" href="http://proceedings.mlr.press/v139/karimireddy21a.html">Karimireddy et al. Learning from History for Byzantine Robust Optimization</a>.</p></li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="install.html" class="btn btn-neutral float-right" title="1. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='right-next' id="next-link" href="install.html" title="next page">Installation</a>
 
-  <hr/>
+              </div>
+              
+          </main>
+          
 
-  <div role="contentinfo">
-    <p>&#169; Copyright 2022, Blades Team.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-</body>
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Blades Team.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
 </html>
