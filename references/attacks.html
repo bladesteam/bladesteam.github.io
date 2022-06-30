@@ -4,13 +4,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Attacks &#8212; Blades  documentation</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
+    <title>Attacks &#8212; Blades  documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
   <link rel="stylesheet"
     href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -18,20 +24,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,33 +42,46 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Aggregators" href="aggregators.html" />
     <link rel="prev" title="Client" href="client.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
 
     
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
 
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
-<p class="title">Blades</p>
-</a>
+  
 
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/blades_logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/blades_logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
     
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="fas fa-bars"></span>
   </button>
 
   
@@ -102,12 +117,18 @@
     <div id="navbar-end">
       
       <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/bladesteam/blades" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/bladesteam/blades" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -118,17 +139,18 @@
     </nav>
     
 
-    <div class="container-xl">
-      <div class="row">
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p class="caption" role="heading">
+    <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Contents:
  </span>
@@ -163,43 +185,45 @@
 
   </div>
 </nav>
-            </div>
-            
-          
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
 
           
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
 
 <nav id="bd-toc-nav">
     
 </nav>
-              </div>
-              
-              <div class="toc-item">
-                
-              </div>
-              
-            
-          </div>
-          
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
 
           
           
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <div class="bd-content col-12 col-md-9 col-xl-7">
               
-              <div>
+              <article class="bd-article" role="main">
                 
-  <div class="section" id="module-attackers.noiseclient">
-<span id="attacks"></span><h1>Attacks<a class="headerlink" href="#module-attackers.noiseclient" title="Permalink to this headline">¶</a></h1>
+  <section id="module-attackers.noiseclient">
+<span id="attacks"></span><h1>Attacks<a class="headerlink" href="#module-attackers.noiseclient" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="attackers.noiseclient.NoiseClient">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">attackers.noiseclient.</span></span><span class="sig-name descname"><span class="pre">NoiseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.noiseclient.</span></span><span class="sig-name descname"><span class="pre">NoiseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
 <p>Uploads random noise as local update. The noise is drawn from a
 <code class="docutils literal notranslate"><span class="pre">normal</span></code> distribution.  The <code class="docutils literal notranslate"><span class="pre">means</span></code> and <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">deviation</span></code> are shared among all drawn elements.</p>
@@ -213,7 +237,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="attackers.noiseclient.NoiseClient.omniscient_callback">
-<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient.omniscient_callback" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/noiseclient.html#NoiseClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.noiseclient.NoiseClient.omniscient_callback" title="Permalink to this definition">#</a></dt>
 <dd><p>A method that will be registered by the simulator and execute after each communication round.
 It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
 input. Your Byzantine client can overwrite this method to access information from the server
@@ -229,7 +253,7 @@ and other input.</p>
 
 <span class="target" id="module-attackers.alieclient"></span><dl class="py class">
 <dt class="sig sig-object py" id="attackers.alieclient.AlieClient">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">attackers.alieclient.</span></span><span class="sig-name descname"><span class="pre">AlieClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.alieclient.</span></span><span class="sig-name descname"><span class="pre">AlieClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -241,7 +265,7 @@ and other input.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="attackers.alieclient.AlieClient.omniscient_callback">
-<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient.omniscient_callback" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/alieclient.html#AlieClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.alieclient.AlieClient.omniscient_callback" title="Permalink to this definition">#</a></dt>
 <dd><p>A method that will be registered by the simulator and execute after each communication round.
 It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
 input. Your Byzantine client can overwrite this method to access information from the server
@@ -257,17 +281,11 @@ and other input.</p>
 
 <span class="target" id="module-attackers.ipmclient"></span><dl class="py class">
 <dt class="sig sig-object py" id="attackers.ipmclient.IpmClient">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">attackers.ipmclient.</span></span><span class="sig-name descname"><span class="pre">IpmClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_fedavg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.ipmclient.</span></span><span class="sig-name descname"><span class="pre">IpmClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="attackers.ipmclient.IpmClient.is_byzantine">
-<span class="sig-name descname"><span class="pre">is_byzantine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient.is_byzantine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient.is_byzantine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a boolean value specifying if the client is Byzantine</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="attackers.ipmclient.IpmClient.omniscient_callback">
-<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient.omniscient_callback" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">omniscient_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/ipmclient.html#IpmClient.omniscient_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.ipmclient.IpmClient.omniscient_callback" title="Permalink to this definition">#</a></dt>
 <dd><p>A method that will be registered by the simulator and execute after each communication round.
 It allows a Byzantine client has full knowledge of the training system, e.g., updates from all
 input. Your Byzantine client can overwrite this method to access information from the server
@@ -283,11 +301,11 @@ and other input.</p>
 
 <span class="target" id="module-attackers.labelflippingclient"></span><dl class="py class">
 <dt class="sig sig-object py" id="attackers.labelflippingclient.LabelflippingClient">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">attackers.labelflippingclient.</span></span><span class="sig-name descname"><span class="pre">LabelflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.labelflippingclient.</span></span><span class="sig-name descname"><span class="pre">LabelflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="attackers.labelflippingclient.LabelflippingClient.on_train_batch_begin">
-<span class="sig-name descname"><span class="pre">on_train_batch_begin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingClient.on_train_batch_begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingClient.on_train_batch_begin" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">on_train_batch_begin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/labelflippingclient.html#LabelflippingClient.on_train_batch_begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.labelflippingclient.LabelflippingClient.on_train_batch_begin" title="Permalink to this definition">#</a></dt>
 <dd><p>Called at the beginning of a training batch in <cite>local_training</cite> methods.</p>
 <p>Subclasses should override for any actions to run.</p>
 <dl class="field-list simple">
@@ -305,11 +323,11 @@ and other input.</p>
 
 <span class="target" id="module-attackers.signflippingclient"></span><dl class="py class">
 <dt class="sig sig-object py" id="attackers.signflippingclient.SignflippingClient">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">attackers.signflippingclient.</span></span><span class="sig-name descname"><span class="pre">SignflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">attackers.signflippingclient.</span></span><span class="sig-name descname"><span class="pre">SignflippingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">blades.client.ByzantineClient</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="attackers.signflippingclient.SignflippingClient.local_training">
-<span class="sig-name descname"><span class="pre">local_training</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_actor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_batches</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient.local_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient.local_training" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">local_training</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_actor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_batches</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/attackers/signflippingclient.html#SignflippingClient.local_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#attackers.signflippingclient.SignflippingClient.local_training" title="Permalink to this definition">#</a></dt>
 <dd><p>Local optimizaiton of the <code class="docutils literal notranslate"><span class="pre">client</span></code>. Byzantine input can overwrite this method to perform adversarial attack.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -324,43 +342,58 @@ and other input.</p>
 
 </dd></dl>
 
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="client.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Client</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="aggregators.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Aggregators</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
 </div>
-
-
-              </div>
+              </footer>
               
-              
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="client.html" title="previous page">Client</a>
-    <a class='right-next' id="next-link" href="aggregators.html" title="next page">Aggregators</a>
-
-              </div>
-              
-          </main>
+          </div>
           
-
       </div>
     </div>
-  
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  <footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
-    &copy; Copyright 2022, Blades Team.<br/>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Blades Team.<br>
 </p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
-</p>
-    </div>
-    
   </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+  </div>
+  
+</div>
 </footer>
   </body>
 </html>

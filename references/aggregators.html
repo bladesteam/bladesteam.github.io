@@ -4,13 +4,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aggregators &#8212; Blades  documentation</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
+    <title>Aggregators &#8212; Blades  documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
   <link rel="stylesheet"
     href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -18,20 +24,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,34 +42,47 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Attacks" href="attacks.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
 
     
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
 
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
-<p class="title">Blades</p>
-</a>
+  
 
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/blades_logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/blades_logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
     
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="fas fa-bars"></span>
   </button>
 
   
@@ -103,12 +118,18 @@
     <div id="navbar-end">
       
       <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/bladesteam/blades" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/bladesteam/blades" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -119,17 +140,18 @@
     </nav>
     
 
-    <div class="container-xl">
-      <div class="row">
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p class="caption" role="heading">
+    <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Contents:
  </span>
@@ -164,50 +186,52 @@
 
   </div>
 </nav>
-            </div>
-            
-          
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
 
           
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
 
 <nav id="bd-toc-nav">
     
 </nav>
-              </div>
-              
-              <div class="toc-item">
-                
-              </div>
-              
-            
-          </div>
-          
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
 
           
           
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <div class="bd-content col-12 col-md-9 col-xl-7">
               
-              <div>
+              <article class="bd-article" role="main">
                 
-  <div class="section" id="module-aggregators.mean">
-<span id="aggregators"></span><h1>Aggregators<a class="headerlink" href="#module-aggregators.mean" title="Permalink to this headline">¶</a></h1>
+  <section id="module-aggregators.mean">
+<span id="aggregators"></span><h1>Aggregators<a class="headerlink" href="#module-aggregators.mean" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="aggregators.mean.Mean">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.mean.</span></span><span class="sig-name descname"><span class="pre">Mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/mean.html#Mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.mean.Mean" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.mean.</span></span><span class="sig-name descname"><span class="pre">Mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/mean.html#Mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.mean.Mean" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
-<p>Computes the <code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">mean</span></code> over the updates from all give input.</p>
+<p>Computes the <code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">mean</span></code> over the updates from all give clients.</p>
 </dd></dl>
 
 <span class="target" id="module-aggregators.krum"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.krum.Krum">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.krum.</span></span><span class="sig-name descname"><span class="pre">Krum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/krum.html#Krum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.krum.Krum" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.krum.</span></span><span class="sig-name descname"><span class="pre">Krum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/krum.html#Krum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.krum.Krum" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://proceedings.neurips.cc/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html">“Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent”</a></p>
 <p>Given a collection of vectors, <code class="docutils literal notranslate"><span class="pre">Krum</span></code> strives to find one of the vector that is closest
@@ -224,7 +248,7 @@ is the number of Byzantine input.</p>
 
 <span class="target" id="module-aggregators.geomed"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.geomed.Geomed">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.geomed.</span></span><span class="sig-name descname"><span class="pre">Geomed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/geomed.html#Geomed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.geomed.Geomed" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.geomed.</span></span><span class="sig-name descname"><span class="pre">Geomed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/geomed.html#Geomed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.geomed.Geomed" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://arxiv.org/abs/1705.05491">“Distributed Statistical Machine Learning in Adversarial Settings: Byzantine Gradient Descent”</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">GeoMed</span></code> aims to find a vector that minimizes the sum of its Euclidean distances to all the update vectors:</p>
@@ -246,7 +270,7 @@ Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
 
 <span class="target" id="module-aggregators.autogm"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.autogm.Autogm">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.autogm.</span></span><span class="sig-name descname"><span class="pre">Autogm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/autogm.html#Autogm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.autogm.Autogm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.autogm.</span></span><span class="sig-name descname"><span class="pre">Autogm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/autogm.html#Autogm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.autogm.Autogm" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9614992">“Byzantine-Robust Aggregation in Federated Learning Empowered Industrial IoT”</a></p>
 <dl class="field-list simple">
@@ -262,15 +286,15 @@ Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
 
 <span class="target" id="module-aggregators.median"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.median.Median">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.median.</span></span><span class="sig-name descname"><span class="pre">Median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/median.html#Median"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.median.Median" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.median.</span></span><span class="sig-name descname"><span class="pre">Median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/median.html#Median"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.median.Median" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a></p>
-<p>It computes the coordinate-wise median of the given set of updates</p>
+<p>It computes the coordinate-wise median of the given set of clients</p>
 </dd></dl>
 
 <span class="target" id="module-aggregators.trimmedmean"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.trimmedmean.Trimmedmean">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.trimmedmean.</span></span><span class="sig-name descname"><span class="pre">Trimmedmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/trimmedmean.html#Trimmedmean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.trimmedmean.Trimmedmean" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.trimmedmean.</span></span><span class="sig-name descname"><span class="pre">Trimmedmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/trimmedmean.html#Trimmedmean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.trimmedmean.Trimmedmean" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a></p>
 <p>It computes the coordinate-wise trimmed average of the model updates, which can be expressed by:</p>
@@ -282,7 +306,7 @@ is a subset obtained by removing the largest and smallest <span class="math notr
 
 <span class="target" id="module-aggregators.centeredclipping"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.centeredclipping.Centeredclipping">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.centeredclipping.</span></span><span class="sig-name descname"><span class="pre">Centeredclipping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/centeredclipping.html#Centeredclipping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.centeredclipping.Centeredclipping" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.centeredclipping.</span></span><span class="sig-name descname"><span class="pre">Centeredclipping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/centeredclipping.html#Centeredclipping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.centeredclipping.Centeredclipping" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="http://proceedings.mlr.press/v139/karimireddy21a.html">Learning from History for Byzantine Robust Optimization</a></p>
 <p>It iteratively clips the updates around the center while updating the center accordingly.</p>
@@ -298,7 +322,7 @@ is a subset obtained by removing the largest and smallest <span class="math notr
 
 <span class="target" id="module-aggregators.clustering"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.clustering.Clustering">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.clustering.</span></span><span class="sig-name descname"><span class="pre">Clustering</span></span><a class="reference internal" href="../_modules/aggregators/clustering.html#Clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clustering.Clustering" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clustering.</span></span><span class="sig-name descname"><span class="pre">Clustering</span></span><a class="reference internal" href="../_modules/aggregators/clustering.html#Clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clustering.Clustering" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/9054676">“On the byzantine robustness of clustered federated learning”</a></p>
 <p>it separates the client population into two groups based on the cosine similarities</p>
@@ -306,7 +330,7 @@ is a subset obtained by removing the largest and smallest <span class="math notr
 
 <span class="target" id="module-aggregators.clippedclustering"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.clippedclustering.Clippedclustering">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.clippedclustering.</span></span><span class="sig-name descname"><span class="pre">Clippedclustering</span></span><a class="reference internal" href="../_modules/aggregators/clippedclustering.html#Clippedclustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clippedclustering.Clippedclustering" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clippedclustering.</span></span><span class="sig-name descname"><span class="pre">Clippedclustering</span></span><a class="reference internal" href="../_modules/aggregators/clippedclustering.html#Clippedclustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clippedclustering.Clippedclustering" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://www.techrxiv.org/articles/preprint/An_Experimental_Study_of_Byzantine-Robust_Aggregation_Schemes_in_Federated_Learning/19560325">“An Experimental Study of Byzantine-Robust sAggregation Schemes in Federated Learning”</a></p>
 <p>it separates the client population into two groups based on the cosine similarities</p>
@@ -314,47 +338,56 @@ is a subset obtained by removing the largest and smallest <span class="math notr
 
 <span class="target" id="module-aggregators.fltrust"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.fltrust.Fltrust">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">aggregators.fltrust.</span></span><span class="sig-name descname"><span class="pre">Fltrust</span></span><a class="reference internal" href="../_modules/aggregators/fltrust.html#Fltrust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.fltrust.Fltrust" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.fltrust.</span></span><span class="sig-name descname"><span class="pre">Fltrust</span></span><a class="reference internal" href="../_modules/aggregators/fltrust.html#Fltrust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.fltrust.Fltrust" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p><code class="docutils literal notranslate"><span class="pre">Fltrust</span></code> it a trusted-based aggregator from paper <a class="reference external" href="https://arxiv.org/abs/2012.13995">FLTrust: Byzantine-robust Federated Learning via Trust Bootstrapping</a></p>
 </dd></dl>
 
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="attacks.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Attacks</p>
+      </div>
+  </a>
 </div>
-
-
-              </div>
+              </footer>
               
-              
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="attacks.html" title="previous page">Attacks</a>
-
-              </div>
-              
-          </main>
+          </div>
           
-
       </div>
     </div>
-  
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  <footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
-    &copy; Copyright 2022, Blades Team.<br/>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Blades Team.<br>
 </p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
-</p>
-    </div>
-    
   </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+  </div>
+  
+</div>
 </footer>
   </body>
 </html>

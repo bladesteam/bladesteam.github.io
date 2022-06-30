@@ -27,7 +27,6 @@ The samples are then aggregated using the build-in aggregation rules.
 .. GENERATED FROM PYTHON SOURCE LINES 8-70
 
 .. code-block:: default
-   :lineno-start: 9
 
 
     import torch
@@ -111,7 +110,7 @@ the range of benign data.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.633 seconds)
+   **Total running time of the script:** ( 0 minutes  2.245 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_comparing_aggregation_schemes.py:

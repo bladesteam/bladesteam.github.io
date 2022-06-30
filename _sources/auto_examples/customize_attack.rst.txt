@@ -24,7 +24,6 @@ Customization of attack strategy
 .. GENERATED FROM PYTHON SOURCE LINES 6-55
 
 .. code-block:: default
-   :lineno-start: 8
 
 
 
@@ -33,7 +32,7 @@ Customization of attack strategy
     from blades.client import ByzantineClient
     from blades.simulator import Simulator
     from blades.datasets import MNIST
-    from blades.models.mnist import DNN
+    from blades.models.mnist import MLP
 
     mnist = MNIST(data_root="./data", train_bs=32, num_clients=10)  # built-in federated MNIST dataset
 
@@ -66,7 +65,7 @@ Customization of attack strategy
 
     # runtime parameters
     run_params = {
-        "model": DNN(),  # global model
+        "model": MLP(),  # global model
         "server_optimizer": 'SGD',  # server optimizer
         "client_optimizer": 'SGD',  # client optimizer
         "loss": "crossentropy",  # loss function
