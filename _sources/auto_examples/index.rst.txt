@@ -72,6 +72,27 @@ Below is a gallery of examples
    :hidden:
 
    /auto_examples/plot_comparing_aggregation_schemes
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Simulation on Mnist Dataset">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_Simulation on MNIST_thumb.png
+     :alt: Simulation on Mnist Dataset
+
+     :ref:`sphx_glr_auto_examples_Simulation on MNIST.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/Simulation on MNIST
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

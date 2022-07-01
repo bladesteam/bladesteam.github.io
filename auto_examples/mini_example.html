@@ -171,6 +171,13 @@
   </a>
  </li>
 </ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Simulation%20on%20MNIST.html">
+   Simulation on Mnist Dataset
+  </a>
+ </li>
+</ul>
 
   </div>
 </nav>
@@ -236,7 +243,8 @@ to download the full example code</p>
     <span class="s2">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;alie&quot;</span><span class="p">,</span>  <span class="c1"># attack strategy</span>
     <span class="s2">&quot;attack_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_clients&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
                      <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
-    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
+    <span class="c1"># &quot;num_actors&quot;: 10,  # number of training actors</span>
     <span class="s2">&quot;use_cuda&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">&quot;gpu_per_actor&quot;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span>
     <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># reproducibility</span>
@@ -252,7 +260,7 @@ to download the full example code</p>
     <span class="s2">&quot;server_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># ,server_opt  # server optimizer</span>
     <span class="s2">&quot;client_optimizer&quot;</span><span class="p">:</span> <span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># client optimizer</span>
     <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;crossentropy&quot;</span><span class="p">,</span>  <span class="c1"># loss function</span>
-    <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
+    <span class="s2">&quot;global_rounds&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>  <span class="c1"># number of global rounds</span>
     <span class="s2">&quot;local_steps&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>  <span class="c1"># number of steps per round</span>
     <span class="s2">&quot;server_lr&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="s2">&quot;client_lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># learning rate</span>
