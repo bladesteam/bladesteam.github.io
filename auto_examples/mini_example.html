@@ -223,11 +223,10 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="a-mini-example">
 <span id="sphx-glr-auto-examples-mini-example-py"></span><h1>A mini example<a class="headerlink" href="#a-mini-example" title="Permalink to this headline">#</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
+
 <span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">MNIST</span>
 <span class="kn">from</span> <span class="nn">blades.models.mnist</span> <span class="kn">import</span> <span class="n">MLP</span>
 <span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
-
-
 
 <span class="c1"># os.environ[&quot;CUDA_DEVICE_ORDER&quot;]=&quot;PCI_BUS_ID&quot;</span>
 <span class="c1"># os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;]=&quot;2,3&quot;</span>
@@ -241,7 +240,7 @@ to download the full example code</p>
     <span class="s2">&quot;aggregator&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># aggregation</span>
     <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of Byzantine input</span>
     <span class="s2">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;alie&quot;</span><span class="p">,</span>  <span class="c1"># attack strategy</span>
-    <span class="s2">&quot;attack_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_clients&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
+    <span class="s2">&quot;attack_kws&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_clients&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># attacker parameters</span>
                      <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
     <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
     <span class="c1"># &quot;num_actors&quot;: 10,  # number of training actors</span>

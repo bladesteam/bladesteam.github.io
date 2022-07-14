@@ -5,10 +5,12 @@
 
 Computation times
 =================
-**00:02.245** total execution time for **auto_examples** files:
+**00:01.542** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_comparing_aggregation_schemes.py` (``plot_comparing_aggregation_schemes.py``) | 00:02.245 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_comparing_aggregation_schemes.py` (``plot_comparing_aggregation_schemes.py``) | 00:01.542 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_Simulation on MNIST.py` (``Simulation on MNIST.py``)                               | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_customize_attack.py` (``customize_attack.py``)                                     | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------+-----------+--------+

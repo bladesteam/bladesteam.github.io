@@ -3,14 +3,15 @@ Simulation on Mnist Dataset
 ===========================
 
 """
-import ray
 import json
+
 import pandas as pd
+import ray
 import seaborn as sns
+
 from blades.datasets import MNIST
 from blades.models.mnist import MLP
 from blades.simulator import Simulator
-
 
 # Initialize Ray
 ray.init()
@@ -27,7 +28,7 @@ conf_params = {
     "num_byzantine": 8,  # number of Byzantine input
     "attack": "ipm",  # attack strategy
     # "log_path": "dbfs/outputs",
-    "attack_params": {   
+    "attack_kws": {   
                           "epsilon": 100,
                      },
     "num_actors": 1,  # number of training actors
@@ -54,10 +55,7 @@ aggs = {
 }
 
 
-# In[11]:
-
-
-for agg in aggs:    
+for agg in aggs:
     conf_params['aggregator'] = agg
     conf_params['log_path'] = f"./outputs/{agg}"
 #     conf_params['log_path'] = f"dbfs/outputs/{k}"
@@ -65,9 +63,6 @@ for agg in aggs:
     run_params['model'] = model
     simulator = Simulator(**conf_params)
     simulator.run(**run_params)
-
-
-# In[6]:
 
 
 def read_json(path):
@@ -87,14 +82,12 @@ def read_json(path):
 
 def transform(entry, agg):  
     return {
-        'Round Number': entry['E'],
+        'Round Number': entry['Round'],
         'Accuracy (%)': entry['top1'],
         "Loss": entry['Loss'],
         'AGG': agg,
     }
 
-
-# In[7]:
 
 
 df = []
@@ -105,20 +98,12 @@ for agg in aggs:
 df = pd.DataFrame(df)
 
 
-# In[8]:
-
-
 g = sns.lineplot(
     data=df, 
     x="Round Number", y="Accuracy (%)",  
     hue="AGG",
     ci=None,
 )
-
-# g.savefig("num_byzantine.pdf", bbox_inches = "tight") 
-
-
-# In[ ]:
 
 
 

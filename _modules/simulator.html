@@ -187,6 +187,7 @@
 <span class="kn">from</span> <span class="nn">blades.client</span> <span class="kn">import</span> <span class="n">BladesClient</span><span class="p">,</span> <span class="n">ByzantineClient</span>
 <span class="kn">from</span> <span class="nn">blades.datasets.datasets</span> <span class="kn">import</span> <span class="n">FLDataset</span>
 <span class="kn">from</span> <span class="nn">blades.server</span> <span class="kn">import</span> <span class="n">BladesServer</span>
+<span class="kn">from</span> <span class="nn">blades.utils</span> <span class="kn">import</span> <span class="n">reset_model_weights</span><span class="p">,</span> <span class="n">set_random_seed</span>
 <span class="kn">from</span> <span class="nn">blades.utils</span> <span class="kn">import</span> <span class="n">top1_accuracy</span><span class="p">,</span> <span class="n">initialize_logger</span>
 
 
@@ -218,9 +219,9 @@
             <span class="n">dataset</span><span class="p">:</span> <span class="n">FLDataset</span><span class="p">,</span>
             <span class="n">num_byzantine</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">attack</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">attack_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">attack_kws</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">aggregator</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">list</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
-            <span class="n">aggregator_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">aggregator_kws</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">num_actors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
             <span class="n">num_trainers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
             <span class="n">gpu_per_actor</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -231,7 +232,7 @@
             <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        
+    
         <span class="bp">self</span><span class="o">.</span><span class="n">use_actor</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;actor&#39;</span> <span class="k">else</span> <span class="kc">False</span>
         
         <span class="k">if</span> <span class="n">use_cuda</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;gpu_per_actor&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;gpu_per_actor&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">):</span>
@@ -239,9 +240,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
         
-        <span class="k">if</span> <span class="n">aggregator_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">aggregator_params</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_init_aggregator</span><span class="p">(</span><span class="n">aggregator</span><span class="o">=</span><span class="n">aggregator</span><span class="p">,</span> <span class="n">aggregator_params</span><span class="o">=</span><span class="n">aggregator_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">aggregator_kws</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aggregator_kws</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_aggregator</span><span class="p">(</span><span class="n">aggregator</span><span class="o">=</span><span class="n">aggregator</span><span class="p">,</span> <span class="n">aggregator_kws</span><span class="o">=</span><span class="n">aggregator_kws</span><span class="p">)</span>
         
         <span class="c1"># Setup logger</span>
         <span class="n">initialize_logger</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
@@ -273,19 +274,21 @@
             <span class="n">traindls</span><span class="p">,</span> <span class="n">testdls</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_dls</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">FLDataset</span><span class="p">(</span><span class="n">traindls</span><span class="p">,</span> <span class="n">testdls</span><span class="p">)</span>
         
-        <span class="k">if</span> <span class="n">attack_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">attack_params</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_clients</span><span class="p">(</span><span class="n">attack</span><span class="p">,</span> <span class="n">num_byzantine</span><span class="o">=</span><span class="n">num_byzantine</span><span class="p">,</span> <span class="n">attack_params</span><span class="o">=</span><span class="n">attack_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attack_kws</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">attack_kws</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_clients</span><span class="p">(</span><span class="n">attack</span><span class="p">,</span> <span class="n">num_byzantine</span><span class="o">=</span><span class="n">num_byzantine</span><span class="p">,</span> <span class="n">attack_kws</span><span class="o">=</span><span class="n">attack_kws</span><span class="p">)</span>
+
+        <span class="n">set_random_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">_init_aggregator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aggregator</span><span class="p">,</span> <span class="n">aggregator_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_init_aggregator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aggregator</span><span class="p">,</span> <span class="n">aggregator_kws</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">aggregator</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">agg_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.aggregators.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">aggregator</span><span class="p">)</span>
             <span class="n">agg_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">agg_path</span><span class="p">,</span> <span class="n">aggregator</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">agg_scheme</span><span class="p">(</span><span class="o">**</span><span class="n">aggregator_params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">agg_scheme</span><span class="p">(</span><span class="o">**</span><span class="n">aggregator_kws</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">aggregator</span>
     
-    <span class="k">def</span> <span class="nf">_setup_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attack</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_byzantine</span><span class="p">,</span> <span class="n">attack_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_setup_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attack</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_byzantine</span><span class="p">,</span> <span class="n">attack_kws</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">importlib</span>
         <span class="k">if</span> <span class="n">attack</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">num_byzantine</span> <span class="o">=</span> <span class="mi">0</span>
@@ -296,7 +299,7 @@
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_byzantine</span><span class="p">:</span>
                 <span class="n">module_path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;blades.attackers.</span><span class="si">%s</span><span class="s1">client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="p">)</span>
                 <span class="n">attack_scheme</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Client&#39;</span> <span class="o">%</span> <span class="n">attack</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
-                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">attack_params</span><span class="p">)</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">attack_scheme</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">attack_kws</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_register_omniscient_callback</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">omniscient_callback</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">client</span> <span class="o">=</span> <span class="n">BladesClient</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
@@ -311,7 +314,8 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
     
 <div class="viewcode-block" id="Simulator.set_trusted_clients"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator.set_trusted_clients">[docs]</a>    <span class="k">def</span> <span class="nf">set_trusted_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Set a list of input as trusted. This is usable for trusted-based algorithms that assume some input are known as not Byzantine.</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Set a list of input as trusted. This is usable for trusted-based algorithms</span>
+<span class="sd">        that assume some clients are known as not Byzantine.</span>
 <span class="sd">    </span>
 <span class="sd">        :param ids: a list of client ids that are trusted</span>
 <span class="sd">        :type ids: list</span>
@@ -363,7 +367,8 @@
 <div class="viewcode-block" id="Simulator.train_actor"><a class="viewcode-back" href="../references/simulator.html#simulator.Simulator.train_actor">[docs]</a>    <span class="k">def</span> <span class="nf">train_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                     <span class="n">global_round</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                     <span class="n">num_rounds</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                    <span class="n">clients</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BladesClient</span><span class="p">]</span>
+                    <span class="n">clients</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BladesClient</span><span class="p">],</span>
+                    <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Run local training using ``ray`` actors</span>
 <span class="sd">        </span>
@@ -371,7 +376,9 @@
 <span class="sd">            global_round (int): The current global round.</span>
 <span class="sd">            num_rounds (int): The number of local update steps.</span>
 <span class="sd">            clients (list): A list of clients that perform local training.</span>
+<span class="sd">            lr (float): Learning rate for client optimizer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="c1"># TODO: randomly select a subset of input for local training</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train global round </span><span class="si">{</span><span class="n">global_round</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
@@ -384,6 +391,7 @@
                 <span class="n">clients</span><span class="o">=</span><span class="n">clients</span><span class="p">,</span>
                 <span class="n">model</span><span class="o">=</span><span class="n">global_model</span><span class="p">,</span>
                 <span class="n">local_round</span><span class="o">=</span><span class="n">num_rounds</span><span class="p">,</span>
+                <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">client_groups</span>
         <span class="p">)</span>
@@ -469,7 +477,7 @@
             <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">update</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="n">r</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;_meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;variance&quot;</span><span class="p">},</span>
-            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="n">cur_round</span><span class="p">,</span>
+            <span class="s2">&quot;Round&quot;</span><span class="p">:</span> <span class="n">cur_round</span><span class="p">,</span>
             <span class="s2">&quot;avg&quot;</span><span class="p">:</span> <span class="n">var_avg</span><span class="p">,</span>
             <span class="s2">&quot;norm&quot;</span><span class="p">:</span> <span class="n">norm</span><span class="p">,</span>
             <span class="s2">&quot;avg_norm&quot;</span><span class="p">:</span> <span class="n">avg_norm</span><span class="p">,</span>
@@ -482,7 +490,7 @@
         <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">([</span><span class="n">metric</span><span class="p">[</span><span class="s1">&#39;Loss&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">metric</span><span class="p">[</span><span class="s1">&#39;Length&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">])</span>
         <span class="n">r</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;_meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">},</span>
-            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;Round&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
             <span class="s2">&quot;top1&quot;</span><span class="p">:</span> <span class="n">top1</span><span class="p">,</span>
             <span class="s2">&quot;Length&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">metric</span><span class="p">[</span><span class="s1">&#39;Length&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">]),</span>
             <span class="s2">&quot;Loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
@@ -495,7 +503,7 @@
         
         <span class="n">r</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;_meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;train&quot;</span><span class="p">},</span>
-            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+            <span class="s2">&quot;Round&quot;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
             <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">batch_idx</span><span class="p">,</span>
             <span class="s2">&quot;Length&quot;</span><span class="p">:</span> <span class="n">length</span><span class="p">,</span>
             <span class="s2">&quot;Loss&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span> <span class="o">/</span> <span class="n">length</span><span class="p">,</span>
@@ -511,7 +519,7 @@
         <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
         <span class="n">pct</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">progress</span> <span class="o">/</span> <span class="n">total</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;[E</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">B</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;3</span><span class="si">}</span><span class="s2">| </span><span class="si">{</span><span class="n">progress</span><span class="si">:</span><span class="s2">6</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">pct</span><span class="si">:</span><span class="s2">3.0f</span><span class="si">}</span><span class="s2">%) ] Loss: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;Loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;[Round</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">B</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;3</span><span class="si">}</span><span class="s2">| </span><span class="si">{</span><span class="n">progress</span><span class="si">:</span><span class="s2">6</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">pct</span><span class="si">:</span><span class="s2">3.0f</span><span class="si">}</span><span class="s2">%) ] Loss: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;Loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
             <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{:&gt;8.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">name</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="c1"># Output to file</span>
@@ -529,7 +537,8 @@
             <span class="n">test_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
             <span class="n">server_lr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
             <span class="n">client_lr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-            <span class="n">lr_scheduler</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">server_lr_scheduler</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">client_lr_scheduler</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run the adversarial training.</span>
 
@@ -556,10 +565,13 @@
 <span class="sd">        :type server_lr: float, optional</span>
 <span class="sd">        :param client_lr: Learning rate of ``client_optimizer``</span>
 <span class="sd">        :type client_lr: float, optional</span>
-<span class="sd">        :param lr_scheduler: Learning rate scheduler</span>
-<span class="sd">        :type lr_scheduler: torch.optim.lr_scheduler.MultiStepLR, optional</span>
+<span class="sd">        :param server_lr_scheduler: Server learning rate scheduler</span>
+<span class="sd">        :type server_lr_scheduler: torch.optim.lr_scheduler.MultiStepLR, optional</span>
+<span class="sd">        :param client_lr_scheduler: Client learning rate scheduler</span>
+<span class="sd">        :type client_lr_scheduler: torch.optim.lr_scheduler.MultiStepLR, optional</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reset_model_weights</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">server_optimizer</span> <span class="o">==</span> <span class="s1">&#39;SGD&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">server_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">server_lr</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -582,7 +594,7 @@
             <span class="k">for</span> <span class="n">global_rounds</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
                 <span class="n">round_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_actor</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">train_actor</span><span class="p">(</span><span class="n">global_rounds</span><span class="p">,</span> <span class="n">local_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clients</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">train_actor</span><span class="p">(</span><span class="n">global_rounds</span><span class="p">,</span> <span class="n">local_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clients</span><span class="p">(),</span> <span class="n">client_lr</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">train_trainer</span><span class="p">(</span><span class="n">global_rounds</span><span class="p">,</span> <span class="n">local_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">)</span>
                 
@@ -591,9 +603,12 @@
                     <span class="n">t</span><span class="o">.</span><span class="n">set_postfix</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">top1</span><span class="o">=</span><span class="n">top1</span><span class="p">)</span>
                 
                 <span class="c1"># TODO(Shenghui): When using trainer, the test method is not implemented so far.</span>
-                <span class="k">if</span> <span class="n">lr_scheduler</span><span class="p">:</span>
-                    <span class="n">lr_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-                    <span class="n">client_lr</span> <span class="o">=</span> <span class="n">lr_scheduler</span><span class="o">.</span><span class="n">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">server_lr_scheduler</span><span class="p">:</span>
+                    <span class="n">server_lr_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">client_lr_scheduler</span><span class="p">:</span>
+                    <span class="n">client_lr_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                    <span class="n">client_lr</span> <span class="o">=</span> <span class="n">client_lr_scheduler</span><span class="o">.</span><span class="n">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="c1"># else:</span>
                 
                 <span class="c1"># client_lr = self.server_opt.param_groups[0][&#39;lr&#39;]</span>
@@ -601,7 +616,7 @@
                 
                 <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">round_start</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{</span><span class="n">global_rounds</span><span class="si">}</span><span class="s2">; Learning rate = </span><span class="si">{</span><span class="n">client_lr</span><span class="si">:}</span><span class="s2">; Time cost = </span><span class="si">{</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">global_start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{</span><span class="n">global_rounds</span><span class="si">}</span><span class="s2">; Client learning rate = </span><span class="si">{</span><span class="n">client_lr</span><span class="si">:}</span><span class="s2">; Time cost = </span><span class="si">{</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">global_start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             
             <span class="k">return</span> <span class="n">ret</span></div></div>
 </pre></div>

@@ -294,7 +294,7 @@ Equivalently, this is a smoothing parameter. Default 1e-6.</p></li>
 
 <span class="target" id="module-aggregators.trimmedmean"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.trimmedmean.Trimmedmean">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.trimmedmean.</span></span><span class="sig-name descname"><span class="pre">Trimmedmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_byzantine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/trimmedmean.html#Trimmedmean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.trimmedmean.Trimmedmean" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.trimmedmean.</span></span><span class="sig-name descname"><span class="pre">Trimmedmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/trimmedmean.html#Trimmedmean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.trimmedmean.Trimmedmean" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
 <p>A robust aggregator from paper <a class="reference external" href="https://proceedings.mlr.press/v80/yin18a">Byzantine-robust distributed learning: Towards optimal statistical rates</a></p>
 <p>It computes the coordinate-wise trimmed average of the model updates, which can be expressed by:</p>
@@ -330,10 +330,17 @@ is a subset obtained by removing the largest and smallest <span class="math notr
 
 <span class="target" id="module-aggregators.clippedclustering"></span><dl class="py class">
 <dt class="sig sig-object py" id="aggregators.clippedclustering.Clippedclustering">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clippedclustering.</span></span><span class="sig-name descname"><span class="pre">Clippedclustering</span></span><a class="reference internal" href="../_modules/aggregators/clippedclustering.html#Clippedclustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clippedclustering.Clippedclustering" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aggregators.clippedclustering.</span></span><span class="sig-name descname"><span class="pre">Clippedclustering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aggregators/clippedclustering.html#Clippedclustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aggregators.clippedclustering.Clippedclustering" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aggregators.mean._BaseAggregator</span></code></p>
-<p>A robust aggregator from paper <a class="reference external" href="https://www.techrxiv.org/articles/preprint/An_Experimental_Study_of_Byzantine-Robust_Aggregation_Schemes_in_Federated_Learning/19560325">“An Experimental Study of Byzantine-Robust sAggregation Schemes in Federated Learning”</a></p>
+<blockquote>
+<div><p>A robust aggregator from paper <a class="reference external" href="https://www.techrxiv.org/articles/preprint/An_Experimental_Study_of_Byzantine-Robust_Aggregation_Schemes_in_Federated_Learning/19560325">“An Experimental Study of Byzantine-Robust sAggregation Schemes in Federated Learning”</a></p>
 <p>it separates the client population into two groups based on the cosine similarities</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tau</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – threshold of clipping norm. If it is not given, updates are clipped according the median of historical norm.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <span class="target" id="module-aggregators.fltrust"></span><dl class="py class">

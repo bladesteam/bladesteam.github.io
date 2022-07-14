@@ -222,14 +222,15 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="simulation-on-mnist-dataset">
 <span id="sphx-glr-auto-examples-simulation-on-mnist-py"></span><h1>Simulation on Mnist Dataset<a class="headerlink" href="#simulation-on-mnist-dataset" title="Permalink to this headline">#</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ray</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
 <span class="kn">from</span> <span class="nn">blades.datasets</span> <span class="kn">import</span> <span class="n">MNIST</span>
 <span class="kn">from</span> <span class="nn">blades.models.mnist</span> <span class="kn">import</span> <span class="n">MLP</span>
 <span class="kn">from</span> <span class="nn">blades.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
-
 
 <span class="c1"># Initialize Ray</span>
 <span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
@@ -246,7 +247,7 @@ to download the full example code</p>
     <span class="s2">&quot;num_byzantine&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>  <span class="c1"># number of Byzantine input</span>
     <span class="s2">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;ipm&quot;</span><span class="p">,</span>  <span class="c1"># attack strategy</span>
     <span class="c1"># &quot;log_path&quot;: &quot;dbfs/outputs&quot;,</span>
-    <span class="s2">&quot;attack_params&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;attack_kws&quot;</span><span class="p">:</span> <span class="p">{</span>
                           <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
                      <span class="p">},</span>
     <span class="s2">&quot;num_actors&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># number of training actors</span>
@@ -273,9 +274,6 @@ to download the full example code</p>
 <span class="p">}</span>
 
 
-<span class="c1"># In[11]:</span>
-
-
 <span class="k">for</span> <span class="n">agg</span> <span class="ow">in</span> <span class="n">aggs</span><span class="p">:</span>
     <span class="n">conf_params</span><span class="p">[</span><span class="s1">&#39;aggregator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">agg</span>
     <span class="n">conf_params</span><span class="p">[</span><span class="s1">&#39;log_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;./outputs/</span><span class="si">{</span><span class="n">agg</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -284,9 +282,6 @@ to download the full example code</p>
     <span class="n">run_params</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
     <span class="n">simulator</span> <span class="o">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="o">**</span><span class="n">conf_params</span><span class="p">)</span>
     <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">run_params</span><span class="p">)</span>
-
-
-<span class="c1"># In[6]:</span>
 
 
 <span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -306,14 +301,12 @@ to download the full example code</p>
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">agg</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;Round Number&#39;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Round Number&#39;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;Round&#39;</span><span class="p">],</span>
         <span class="s1">&#39;Accuracy (%)&#39;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;top1&#39;</span><span class="p">],</span>
         <span class="s2">&quot;Loss&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;Loss&#39;</span><span class="p">],</span>
         <span class="s1">&#39;AGG&#39;</span><span class="p">:</span> <span class="n">agg</span><span class="p">,</span>
     <span class="p">}</span>
 
-
-<span class="c1"># In[7]:</span>
 
 
 <span class="n">df</span> <span class="o">=</span> <span class="p">[]</span>
@@ -324,20 +317,12 @@ to download the full example code</p>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 
-<span class="c1"># In[8]:</span>
-
-
 <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
     <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Round Number&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Accuracy (%)&quot;</span><span class="p">,</span>
     <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;AGG&quot;</span><span class="p">,</span>
     <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="c1"># g.savefig(&quot;num_byzantine.pdf&quot;, bbox_inches = &quot;tight&quot;)</span>
-
-
-<span class="c1"># In[ ]:</span>
 </pre></div>
 </div>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
